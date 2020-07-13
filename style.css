@@ -11,6 +11,8 @@ body {
     margin: 50px auto 50px auto;
     height: 800px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); 
+    border-radius: 30px;
+    overflow: hidden;
 }
 
 h1 {
@@ -40,7 +42,7 @@ h2 {
 }
 
 .center {   
-    background-color: rgb(233, 234, 235);
+    background-color: rgb(236, 236, 236);
     flex:2;
     display:flex;
     align-items: center;
@@ -49,7 +51,6 @@ h2 {
     flex-wrap: wrap;
 }
 .right {
-    background:rgb(218, 218, 218);
     flex:1; 
     background-color: rgb(218, 218, 218);
     flex:1;
@@ -69,7 +70,7 @@ h2 {
     color: #000;
     background-color: rgb(217, 231, 209);
     border: none;
-    border-radius: 25px;
+    border-radius: 18px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease 0s;
     cursor: pointer;
