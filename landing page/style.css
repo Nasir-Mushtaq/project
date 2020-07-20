@@ -1,0 +1,40 @@
+
+body {
+    font-family: 'Prompt', sans-serif;
+
+}
+title {
+    font-family: simplifica;
+}
+main {
+    width: 1500px;
+    height: 1000px;
+    margin: auto;
+    background-image: url("iphone-11.png");
+    background-repeat: no-repeat;   
+
+}
+.text {
+    padding: 220px;
+    color: white;
+    margin-left: 680px;
+    margin-top: 1500px;
+    letter-spacing: 2px;
+}
+p {
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 35px;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+h3 {
+    font-size: 25px;
+    color: rgb(245, 11, 11);
+}
+
