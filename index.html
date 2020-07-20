@@ -55,14 +55,22 @@
                             <div class="name d-flex justify-content-between mb-2"><label for="taskdescription">Description</label>
                                 <textarea id="taskdescription" rows="3" placeholder="Enter task description"> </textarea>  </div>
                             <div class="name d-flex justify-content-between mb-2"><label for="taskname">Due date</label>
-                                <input type="text" id="duedate" placeholder="Enter due date" ></div>
+                                <input type="date" id="duedate" placeholder="Enter due date" ></div>
                                 <div class="name d-flex justify-content-between mb-2"><label for="taskname">Start time</label>
-                                    <input type="text" id="taskname" placeholder="Enter task name" ></div>
+                                    <input type="time" id="taskname" placeholder="Enter task name" ></div>
                                     <div class="name d-flex justify-content-between mb-2"><label for="taskname">Finish time</label>
-                                        <input type="text" id="taskname" placeholder="Enter task name" ></div>
+                                        <input type="time" id="taskname" placeholder="Enter task name" ></div>
                                         <div class="name d-flex justify-content-between mb-2"><label for="taskname">Assigned to</label>
-                                            <input type="text" id="taskname" placeholder="Enter task name" ></div>
-                                            <div class="name d-flex justify-content-between dropdown "><label for="taskname">Status</label>
+                                            <input type="text" id="taskname" placeholder="Assigned to" ></div>
+                                            <div class="name d-flex justify-content-between dropdown "><label for="taskname">Group</label>
+                                                <button type="button" class="statusbutton btn btn-secondary dropdown-toggle mb-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Call</a>
+                                                <a class="dropdown-item" href="#">Meeting</a>
+                                                <a class="dropdown-item" href="#">Family</a>
+                                                <a class="dropdown-item" href="#">Social</a>
+                                            </div>
+                                            <div class="name d-flex justify-content-left dropdown "><label for="taskname">Status</label>
                                                 <button type="button" class="statusbutton btn btn-secondary dropdown-toggle mb-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#">To do</a>
