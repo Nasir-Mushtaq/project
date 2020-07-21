@@ -21,13 +21,25 @@
         <div class="center">
             <h1>Nasir's Task Planner</h1>
             <h2>Your day ahead</h2>
-            <div class="time 9">9:00 AM <br><br>Daily opening</div>
-            <div class="time 10">10:00 AM <br><br>Guest speaker</div>
-            <div class="time 11">11:00 AM <br><br>A Sync</div>
-            <div class="time 12">12:00 AM <br><br>Lunch</div>
-            <div class="time 1">1:00 PM <br><br>A Sync</div>
-            <div class="time 2">2:00 PM <br><br>Zoom call</div>
-            <div class="time 3">3:00 PM <br><br>Daily reflection</div>
+
+        
+        <div class="list-group">
+                <div class="timeslot">
+                    <a href="#" class="time list-group-item list-group-item-action active">
+                    9:00 AM <br><br>Daily opening </a></div>
+                    <div class=" timeslot">
+                        <a href="#" class="time list-group-item list-group-item-action ">
+                        9:00 AM <br><br>Daily opening </a></div>
+                        <div class=" timeslot">
+                            <a href="#" class="time list-group-item list-group-item-action ">
+                            9:00 AM <br><br>Daily opening </a></div>
+                            <div class=" timeslot">
+                                <a href="#" class="time list-group-item list-group-item-action ">
+                                9:00 AM <br><br>Daily opening </a></div>
+                                <div class=" timeslot">
+                                    <a href="#" class="time list-group-item list-group-item-action ">
+                                    9:00 AM <br><br>Daily opening </a></div>
+        </div>
         </div>
         <div class="right">
             <div class="addtask">
@@ -40,12 +52,11 @@
             <button class="button b3">Thursday</button>
             <button class="button b4">Friday</button>
             </div>
-            <div class="modal fade" id="addtask" role="dialog">
-                <div class="modal-dialog">
+            <div class="z modal fade" id="addtask" role="dialog">
+                <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
-                    <div class="modal-header">
-                      
-                      <h4 class="modal-title">Add new task</h4>
+                    <div class="modal-header ">
+                      <h4 class="modal-title w-100 text-center">Add new task</h4>
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -62,16 +73,17 @@
                                         <input type="time" id="taskname" placeholder="Enter task name" ></div>
                                         <div class="name d-flex justify-content-between mb-2"><label for="taskname">Assigned to</label>
                                             <input type="text" id="taskname" placeholder="Assigned to" ></div>
-                                            <div class="name d-flex justify-content-between dropdown "><label for="taskname">Group</label>
-                                                <button type="button" class="statusbutton btn btn-secondary dropdown-toggle mb-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
+                                            
+                                        <div class="name d-flex justify-content-between dropdown "><label for="taskname">Group</label>
+                                                <button type="button addbutton" class="statusbutton btn btn-secondary dropdown-toggle mb-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#">Call</a>
                                                 <a class="dropdown-item" href="#">Meeting</a>
                                                 <a class="dropdown-item" href="#">Family</a>
                                                 <a class="dropdown-item" href="#">Social</a>
-                                            </div>
-                                            <div class="name d-flex justify-content-left dropdown "><label for="taskname">Status</label>
-                                                <button type="button" class="statusbutton btn btn-secondary dropdown-toggle mb-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
+                                                </div>
+                                            <label for="taskname">Status</label>
+                                                <button type="button addbutton" class="statusbutton btn btn-secondary dropdown-toggle mb-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#">To do</a>
                                                 <a class="dropdown-item" href="#">In progress</a>
