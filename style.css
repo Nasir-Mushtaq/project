@@ -174,7 +174,6 @@ h2 {
         cursor: pointer;
         outline: none;
         margin-bottom: 25px;
-    
         }
         .closebutton:hover {
             background-color: #4052f1;
@@ -207,8 +206,11 @@ h2 {
     background-color: rgb(195, 245, 166);
 }
 
-.timeslot {
-    border-radius: 10px;
-    border: none;
+
+
+.card-link {
+    text-decoration: none;
+    color: black;
+    padding: 5px;
 }
 

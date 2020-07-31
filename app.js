@@ -20,13 +20,15 @@ function addButtonClicked() {
 function newTask(name, description, assignedTo, dueDate, startTime, finishTime) {
 const html = `
 <div class="card time pt-0">
-  <div class="card-body">
-  <h5 class="card-title">${name} - ${startTime}</h5>
-  <h6 class="card-subtitle >${description}</h6>
-  <h6 class="card-subtitle >${assignedTo}</h6>
-  <h6 class="card-subtitle >${dueDate}</h6>
-  <h6 class="card-subtitle >${finishTime}</h6>
-  <h6 class="card-subtitle >${status}</h6>
+  <div class="card-body pt-3">
+  <h5 class="card-title">${startTime} - ${name}</h5>
+  <h6 class="card-subtitle d-inline" >${description}</h6>
+  <h6 class="card-subtitle d-inline ml-2" >${assignedTo}</h6>
+  <h6 class="card-subtitle d-inline ml-2" >${dueDate}</h6>
+  <h6 class="card-subtitle d-inline ml-2" >${finishTime}</h6>
+  <h6 class="card-subtitle d-inline ml-2" >${status}</h6>
+  <a href="#" class="card-link float-right p-0 ml-1"><i class="fa fa-trash fa-2x"></i></a>
+  <a href="#" class="card-link float-right p-0 mr-1"><i class="fa fa-edit fa-2x"></i></a>
   </div>
 </div>`;
 
@@ -35,63 +37,71 @@ taskContainer.append(taskElement);
 }
 newTask(
   name = "Daily opening",
-  description = "",
-  assignedTo = "Nasir",
+  description = "Generation JWD course",
+  assignedTo = "",
   dueDate = "",
   startTime = "9 AM",
   finishTime = "",
 );
 newTask(
   name = "Async task",
-  description = "",
-  assignedTo = "Nasir",
+  description = "Generation JWD course",
+  assignedTo = "",
   dueDate = "",
   startTime = "9:15 AM",
   finishTime = "",
 );
 newTask(
   name = "Zoom with Anindha",
-  description = "",
-  assignedTo = "Nasir",
+  description = "Generation JWD course",
+  assignedTo = "",
   dueDate = "",
   startTime = "11 AM",
   finishTime = "",
 );
 newTask(
   name = "Lunch",
-  description = "",
-  assignedTo = "Nasir",
+  description = "Generation JWD course",
+  assignedTo = "",
   dueDate = "",
   startTime = "12:30 PM",
   finishTime = "",
 );
 newTask(
   name = "Async task",
-  description = "",
-  assignedTo = "Nasir",
+  description = "Generation JWD course",
+  assignedTo = "",
   dueDate = "",
   startTime = "1:00 PM",
   finishTime = "",
 );newTask(
   name = "Zoom with Anindha",
-  description = "",
-  assignedTo = "Nasir",
+  description = "Generation JWD course",
+  assignedTo = "",
   dueDate = "",
   startTime = "3 PM",
   finishTime = "",
 );newTask(
   name = "Async task",
-  description = "",
-  assignedTo = "Nasir",
+  description = "Generation JWD course",
+  assignedTo = "",
   dueDate = "",
   startTime = "4 PM",
   finishTime = "",
 );newTask(
-  name = "Daily reflecion",
-  description = "",
-  assignedTo = "Nasir",
+  name = "Daily reflection",
+  description = "Generation JWD course",
+  assignedTo = "",
   dueDate = "",
-  startTime = "4:45 pM",
+  startTime = "4:45 PM",
   finishTime = "",
 );
 
+/* <ul class="list-inline float-right"> 
+      <li class="list-inline-item">
+      <button class="btn btn-success btn-sm" type="button" data-toggle="tooltip"  title="Edit"><i class="fa fa-edit"></i></button>
+      </li>
+      <li class="list-inline-item">
+      <button class="btn btn-danger btn-sm" type="button" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash"></i></button>
+      </li>
+      </ul>*/
