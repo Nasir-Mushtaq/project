@@ -105,6 +105,7 @@ h2 {
         font-size: 6px;
         /* text-transform: uppercase; */
         letter-spacing: 1px;
+        padding: 2px;
     }
     .time h5, h6{
         font-size: 12px;
