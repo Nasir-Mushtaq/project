@@ -1,107 +1,211 @@
-const taskContainer = document.querySelector('#taskList');
-const taskModalAddButton = document.querySelector('#addNewTask');
+//Global variable declarations
 
-taskModalAddButton.addEventListener("click", addButtonClicked);
+const list = document.getElementById('taskList')
+let saveButton = document.getElementById ("saveTaskButton")
+let modalTitle = document.getElementById ("modalTitle")
+let modalButton = document.getElementById ("modalButton")
+let closeButton = document.getElementById("close")
+let addButton = document.getElementById("addTaskButton")
 
-function addButtonClicked() {
-    const name = document.querySelector("#taskName").value;
-    const description = document.querySelector("#taskDescription").value;
-    const dueDate = document.querySelector("#dueDate").value;
-    const startTime = document.querySelector("#startTime").value;
-    const finishTime = document.querySelector("#finishTime").value;
-    const assignedTo = document.querySelector("#assignedTo").value;
-    // const category = document.querySelector("#dropdownMenuButton").value;
-    // const status = document.querySelector("#status").value;
+let name = document.querySelector("#taskName")
+let description = document.querySelector("#taskDescription")
+let date = document.querySelector("#dueDate")
+let startTime = document.querySelector("#startTime")
+let assignedTo = document.querySelector("#assignedTo")
+let category = document.querySelector("#category")
+let status = document.querySelector("#status")
+let id
+// State declaration
+let tasksArray = []
+
+//class Task 
+class Task{
+  constructor(name, description, date, startTime, assignedTo, category, status, id) {
+      this.name = name
+      this.description = description
+      this.date = date
+      this.startTime = startTime
+      this.assignedTo = assignedTo
+      this.category = category
+      this.status = status
+      this.id = id
+  }
+}
+
+//class TaskManager containing add task to storage, get task from storage, add task to page, 
+//update task, delete task functions
+class TaskManager{
+  constructor() {
+}
+
+//Creation of task cards 
+addTaskToList(task) {
+    const html = tasksArray
+  .map( task =>
+    `
+    <div id = "task${task.id}" class = "task">
+    <div class="card time pt-0 mb-2">
+    <div class="card-title p-1 ">
+    <h5 class ="d-inline ml-1">${task.startTime} - ${task.name} - ${task.category}</h5>
+    <a href="#" class="card-link float-right p-0 ml-1 mr-1"><option value="${task.id}"class = "fa fa-trash fa-2x delete"></option></a>
+    <a href="#" class="card-link float-right p-0 mr-1" data-toggle="modal" data-target="#abc"><option value="${task.id}" class ="fa fa-edit fa-2x edit"></option></a>
+    </div>
+    <div class="card-body ml-1 ">
+    <p class="card-subtitle ml-1">${task.description}</p>
+    </div>
+    <div class="card-footer p-1">
+    <h6 class="card-subtitle d-inline ml-1" >${task.date}</h6>
+    <h6 class="card-subtitle d-inline ml-4" >Assigned to: ${task.assignedTo}</h6>
+    <h6 class="card-subtitle d-inline float-right mr-1" >Status: ${task.status}</h6>
+    </div>
+    </div>
+    </div>
+    </div>
+     `)
+     .join('')
+     list.innerHTML = html
+}
+
+// Display task on page
+displayTasks() {
+  const tasks = this.getTasks()
+  tasks.forEach((task) => this.addTaskToList(task))
+}
+// Clear modal form fields
+clearFields() {
+  document.getElementById("taskName").value = ''
+  document.getElementById("taskDescription").value = ''
+  document.getElementById("dueDate").value = ''
+  document.getElementById("startTime").value = ''
+  document.getElementById("assignedTo").value = ''
+  document.getElementById("category").value = ''
+  document.getElementById("status").value = ''
+  }
+
+// Get tasks form storage
+getTasks() {
+  if(localStorage.getItem('tasks') === null) {
+        tasksArray = []
+      } else {
+        tasksArray = JSON.parse(localStorage.getItem('tasks'))
+      }
+    return tasksArray
+}
+
+// Add tasks to storage
+ addTask(task) {
+    const tasks = tasksArray
+    tasks.push(task)
+    localStorage.setItem('tasks',JSON.stringify(tasks))
+}
+
+// Update tasks in storage after edit
+updateTask(task) {
+  const tasks = tasksArray
+  localStorage.setItem('tasks',JSON.stringify(tasks))
+}
+
+// Delete tasks 
+removeTask(id) {
+ 
+  tasksArray = tasksArray.filter(task => task.id !== id)
+  localStorage.setItem('tasks',JSON.stringify(tasksArray))
+}
+}
+
+// TaskManager class instantiated
+taskManager = new TaskManager();
+
+// Function to handle adding of tasks
+addButton.onclick = function() {
+  // e.preventDefault()
+  let taskName = name.value
+  let taskDescription = description.value
+  let taskDate = date.value
+  let taskStartTime = startTime.value
+  let taskAssignedTo = assignedTo.value
+  let taskCategory = category.value
+  let taskStatus = status.value
+  let taskId = Date.now()
+
+// Tasks class instantiated
+const task = new Task(taskName,taskDescription,taskDate,taskStartTime,taskAssignedTo,taskCategory,taskStatus,taskId)
+
+taskManager.addTask(task)
+taskManager.addTaskToList(task)
+taskManager.clearFields()
+taskManager.displayTasks()
+}
+
+// Function to run when add new task button is clicked
+modalButton.onclick = function() {
+  addButton.style.display="block"
+  saveButton.style.display="none"
+  modalTitle.innerText = "Add new Task"
+}
+
+// Functions for adding, editing and deleting tasks when relevant buttons are clicked
+list.addEventListener('click', function(e) {
+  let clickedId = parseInt(e.target.value)
+// Delete button
+  if (e.target.closest('.delete')) {
+    taskManager.removeTask(clickedId)
+    location.reload()
+  }
+  // Edit button
+  if (e.target.closest('.edit')) {
     
+    const clickedTask = tasksArray.find((t) => clickedId == t.id)
+    
+    addButton.style.display="none"
+    saveButton.style.display="block"
+    modalTitle.innerText = "Update Task"
 
-   newTask(name, description, assignedTo, dueDate, startTime, finishTime);
+    name.value = clickedTask.name
+    description.value = clickedTask.description
+    date.value = clickedTask.date
+    startTime.value = clickedTask.startTime
+    assignedTo.value = clickedTask.assignedTo
+    category.value = clickedTask.category
+    status.value = clickedTask.status
+    id = clickedTask.id
+
+    // Save button
+    saveButton.onclick = function(){
+
+      updatedTask = {
+        name: name.value,
+        description: description.value,
+        date: date.value,
+        startTime: startTime.value,
+        assignedTo: assignedTo.value,
+        category: category.value,
+        status: status.value,
+        id: clickedId
+      }
+      // Find array index to update
+      let index = tasksArray.map(function(el) {
+        return el.id
+      }).indexOf(id)
+      tasksArray.splice(index, 1, updatedTask)
+      taskManager.updateTask()
+      taskManager.clearFields()
+      taskManager.displayTasks()
+  }
+  }  
+})
+
+closeButton.onclick = function(){
+  taskManager.clearFields()
 }
 
-function newTask(name, description, assignedTo, dueDate, startTime, finishTime) {
-const html = `
-<div class="card time pt-0">
-  <div class="card-body pt-3">
-  <h5 class="card-title">${startTime} - ${name}</h5>
-  <h6 class="card-subtitle d-inline" >${description}</h6>
-  <h6 class="card-subtitle d-inline ml-2" >${assignedTo}</h6>
-  <h6 class="card-subtitle d-inline ml-2" >${dueDate}</h6>
-  <h6 class="card-subtitle d-inline ml-2" >${finishTime}</h6>
-  <h6 class="card-subtitle d-inline ml-2" >${status}</h6>
-  <a href="#" class="card-link float-right p-0 ml-1"><i class="fa fa-trash fa-2x"></i></a>
-  <a href="#" class="card-link float-right p-0 mr-1"><i class="fa fa-edit fa-2x"></i></a>
-  </div>
-</div>`;
+// Load tasks from storage on page load
+document.addEventListener('DOMContentLoaded', taskManager.displayTasks())
 
-const taskElement = document.createRange().createContextualFragment(html);
-taskContainer.append(taskElement);
-}
-newTask(
-  name = "Daily opening",
-  description = "Generation JWD course",
-  assignedTo = "",
-  dueDate = "",
-  startTime = "9 AM",
-  finishTime = "",
-);
-newTask(
-  name = "Async task",
-  description = "Generation JWD course",
-  assignedTo = "",
-  dueDate = "",
-  startTime = "9:15 AM",
-  finishTime = "",
-);
-newTask(
-  name = "Zoom with Anindha",
-  description = "Generation JWD course",
-  assignedTo = "",
-  dueDate = "",
-  startTime = "11 AM",
-  finishTime = "",
-);
-newTask(
-  name = "Lunch",
-  description = "Generation JWD course",
-  assignedTo = "",
-  dueDate = "",
-  startTime = "12:30 PM",
-  finishTime = "",
-);
-newTask(
-  name = "Async task",
-  description = "Generation JWD course",
-  assignedTo = "",
-  dueDate = "",
-  startTime = "1:00 PM",
-  finishTime = "",
-);newTask(
-  name = "Zoom with Anindha",
-  description = "Generation JWD course",
-  assignedTo = "",
-  dueDate = "",
-  startTime = "3 PM",
-  finishTime = "",
-);newTask(
-  name = "Async task",
-  description = "Generation JWD course",
-  assignedTo = "",
-  dueDate = "",
-  startTime = "4 PM",
-  finishTime = "",
-);newTask(
-  name = "Daily reflection",
-  description = "Generation JWD course",
-  assignedTo = "",
-  dueDate = "",
-  startTime = "4:45 PM",
-  finishTime = "",
-);
 
-/* <ul class="list-inline float-right"> 
-      <li class="list-inline-item">
-      <button class="btn btn-success btn-sm" type="button" data-toggle="tooltip"  title="Edit"><i class="fa fa-edit"></i></button>
-      </li>
-      <li class="list-inline-item">
-      <button class="btn btn-danger btn-sm" type="button" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash"></i></button>
-      </li>
-      </ul>*/
+
+
+
+
+
+

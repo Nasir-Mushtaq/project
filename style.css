@@ -34,6 +34,10 @@ h2 {
     letter-spacing: 3px;
 }
 
+p {
+    font-size: 12px;
+}
+
 .left {
     background-color: rgb(218, 218, 218);
     flex:1;
@@ -56,7 +60,7 @@ h2 {
 }
 #taskList {
     height: 600px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .right {
     flex:1; 
@@ -85,92 +89,67 @@ h2 {
     margin-bottom: 25px;
 
     }
-    .button:hover {
+.button:hover {
         background-color: #2EE59D;
         box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
         color: #fff;
         transform: translateY(-5px);
-    }
+        filter: saturate(3); 
+}
 
-    .btn:focus {
+.btn:focus {
         outline: none;
         box-shadow: none;
         border: none;
       }
 
-    .time {
+.time {
         width: 450px;
-        height: 70px;
+        height: 80px;
         background-color: rgb(217, 231, 209);
         border-radius: 10px;
         border: none;
         margin-bottom: 5px;
-        /* padding: 5px; */
         font-size: 6px;
-        /* text-transform: uppercase; */
         letter-spacing: 1px;
         padding: 2px;
-    }
-    .time h5, h6{
+}
+.time h5, h6{
         font-size: 12px;
-    }
-
-    .time:hover {
+}
+.time:hover {
         background-color: rgb(212, 245, 193);
-    }
+}
 
-    .add {
+.add {
         width: 85px;
         height: 85px;
         font-size: 40px;
         margin-bottom: 40px;
-        filter: saturate(3);  
-    }
+        filter: saturate(3); 
+}
 
-    .modal-title {
+.modal-title {
         text-align: center;
-    }
+}
 
- .modal-header {
-     background-color: rgb(165, 164, 164);
+.modal-header {
      color: rgb(51, 51, 51);
      text-transform: uppercase;
      font-family: 'Prompt', sans-serif;
      font-size: 20px;
      letter-spacing: 2px;
-     
- }
- .addbutton {
-    width: 60px;
-    height: 40px;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #000;
-    background-color: rgb(217, 231, 209);
-    border: none;
-    border-radius: 18px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    outline: none;
-    margin-bottom: 25px;
-
-    }
-    .addbutton:hover {
-        background-color: #2EE59D;
-        box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-        color: #fff;
-        transform: translateY(-5px);
-    }
-    .closebutton {
+     background-color: rgb(218, 218, 218);
+     margin-bottom: 20px;
+}
+/* .closebutton, .addbutton{
         width: 80px;
         height: 40px;
         font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 3px;
         color: #000;
-        background-color: rgb(127, 129, 243);
+        background-color:  rgb(217, 231, 209);
         border: none;
         border-radius: 18px;
         box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -180,41 +159,85 @@ h2 {
         margin-bottom: 25px;
         }
         .closebutton:hover {
-            background-color: #4052f1;
-            box-shadow: 0px 15px 20px rgba(64, 46, 229, 0.4);
+            background-color: #f14040;
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
             color: #fff;
             transform: translateY(-5px);
         }
+        .addbutton:hover {
+            background-color: #5b40f1;
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            transform: translateY(-5px);
+        } */
 
-        .statusbutton {
-            background-color: rgb(218, 218, 218);
-            color: rgb(51, 51, 51);
-            border:none;
-        }
-.modal-body {
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: 'Prompt', sans-serif;
-}
 .modal-content {
     border-radius: 20px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); 
+    background-color:  rgb(236, 236, 236);
+    overflow: hidden;
 }
 
 .modal-header {
-    border-radius: 20px 20px 0 0;
+    background-color: rgb(218, 218, 218);
+    margin-bottom: 20px;
 }
+
+.modal-footer {
+    
+    background-color:rgb(218, 218, 218);
+    
+}
+
 
 .list-group-item-action.active {
     background-color: rgb(195, 245, 166);
 }
-
-
-
 .card-link {
     text-decoration: none;
     color: black;
-    padding: 5px;
+    
 }
 
+.card-title, .card-footer {
+    background-color:rgb(202, 218, 192);
+    border: none;
+    text-transform: uppercase;
+}
+.card, .card-body, .card-subtitle, .card-footer, .card-title {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+input[type=text], select, textarea {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  select {
+    text-align-last:center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+select:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  textarea:focus {
+    outline: none;
+    box-shadow: none;
+  }
