@@ -44,7 +44,7 @@ addTaskToList(task) {
     const html = tasksArray
   .map( task =>
     `
-    <div id = "task${task.id}" class = "task ${task.status}">
+    <div id = "task${task.id}" class = "${task.status}" task >
     <div class="card time pt-0 mb-2">
     <div class="card-title p-1 ">
     <h5 class ="d-inline ml-1">${task.startTime} - ${task.name} - ${task.category}</h5>
@@ -208,7 +208,7 @@ toDoButton.onclick = function() {
 
   taskManager.displayTasks()
 
-  progressTasks = document.querySelectorAll(".progress")
+  progressTasks = document.querySelectorAll(".Progress")
   reviewTasks = document.querySelectorAll(".Review")
   completedTasks = document.querySelectorAll(".Completed")
   
@@ -249,7 +249,7 @@ reviewButton.onclick = function() {
   taskManager.displayTasks()
 
   toDoTasks = document.querySelectorAll(".do")
-  progressTasks = document.querySelectorAll(".progress")
+  progressTasks = document.querySelectorAll(".Progress")
   completedTasks = document.querySelectorAll(".Completed")
 
   for (let i = 0; i < progressTasks.length; i++) {
@@ -270,7 +270,7 @@ completeButton.onclick = function() {
 
   toDoTasks = document.querySelectorAll(".do")
   reviewTasks = document.querySelectorAll(".Review")
-  progressTasks = document.querySelectorAll(".progress")
+  progressTasks = document.querySelectorAll(".Progress")
 
   for (let i = 0; i < reviewTasks.length; i++) {
     reviewTasks[i].style.display = "none"
@@ -288,12 +288,12 @@ allButton.onclick = function() {
   taskManager.displayTasks()
 }
 
-// const tmrwButton = document.querySelector(".b5")
-// tmrwButton.onclick = function () {
-//   taskDate = document.querySelectorAll(".taskDate").textContent
-//   date = taskDate.toString
-//   console.log(date.toString())
-// }
+const tmrwButton = document.querySelector(".b5")
+tmrwButton.onclick = function () {
+  taskDate = document.querySelectorAll(".taskDate")
+  date = taskDate.toString
+  console.log(date)
+}
 // Load tasks from storage on page load
 document.addEventListener('DOMContentLoaded', taskManager.displayTasks())
 
