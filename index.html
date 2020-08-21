@@ -12,28 +12,26 @@
 <body>  
     <div class="container">
         <div class="left">
-            <h2>Categories</h2>
-                <button class="btn button b1">Call</button>
-                <button class="btn button b2">Meeting</button>
-                <button class="btn button b3">Family</button>
-                <button class="btn button b4">Social</button>
+            <h2>Status</h2>
+                <button class="btn button b1">To do</button>
+                <button class="btn button b2">In progress</button>
+                <button class="btn button b3">Review</button>
+                <button class="btn button b4">Completed</button>
         </div>
         <div class="center">
-            <button id="modalButton" type="button" class="button add btn" data-toggle="modal" data-target="#abc">+</button>
-
             <h1>Task Planner Pro </h1>
+            <button id="modalButton" type="button" class="button add btn" data-toggle="modal" data-target="#abc">+</button>
+            <button class="btn button b0">All</button>
             <h2>Your day ahead</h2>
-            
-            
             <div id="taskList">
         </div>
         </div>
         <div class="right">
             <h2>Your week ahead</h2>
-            <button class="btn button b1">Tomorrow</button>
-            <button class="btn button b2">Wednesday</button>
-            <button class="btn button b3">Thursday</button>
-            <button class="btn button b4">Friday</button>
+            <button class="btn button b5">Tomorrow</button>
+            <button class="btn button b6">Wednesday</button>
+            <button class="btn button b7">Thursday</button>
+            <button class="btn button b8">Friday</button>
             </div>
             <div class="modal fade" id="abc" role="dialog">
                 <div class="modal-dialog modal-dialog-centered">
@@ -44,53 +42,71 @@
                     </div>
                     <div class="text-center">
                         <form class="form-group">
-                           <div class="mb-2 " ><!-- <label for="taskname">Task Name</label> -->
-                            <input type="text" class="" id="taskName" placeholder="Enter task name" required >
-                            <span class="error"><p id="name_error"></p></span>
+                           <div class="taskInput  mb-2" ><!-- <label for="taskname">Task Name</label> -->
+                            <input type="text" class="input" id="taskName" placeholder="Enter task name" onfocusout = "validateName(6, 25)" required>
+                            <i id="nameSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
+			                <i id="nameErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+			                <small id="name_error" class="errr"></small>
+                            <!-- <p id="name_error"></p> -->
                             </div>
-                           <div class="mb-2"> <!-- <label for="taskdescription">Description</label> -->
-                                <textarea id="taskDescription"  rows="1" placeholder="Enter task description"></textarea>
-                                <span class="error"><p id="description_error"></p></span>  
+                           <div class="taskInput  mb-2"> <!-- <label for="taskdescription">Description</label> -->
+                                <textarea id="taskDescription"  class="input" rows="1" placeholder="Enter task description" onfocusout = "validateDescription(6, 100)" required></textarea>
+                                <i id="descriptionSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
+                                <i id="descriptionErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+                                <small id="description_error" class="errr"></small>
+                                <!-- <p id="description_error"></p> -->
                             </div>
-                            <div class="mb-2"><!-- <label for="dueDate">Date</label> -->
+                            <div class="taskInput mb-2"><!-- <label for="dueDate">Date</label> -->
                                 <!-- <input type="date" class="float-right" id="dueDate" placeholder="Enter date"> -->
-                                <input placeholder="Choose date" class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="dueDate" />
-                                <span class="error"><p id="date_error"></p></span>
+                                <input placeholder="Choose date" class="textbox-n input" type="text" onfocus="(this.type='date')"  onfocusout = "(this.type='text'); validateDate()" id="dueDate">
+                                <i id="dateSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
+                                <i id="dateErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+                                <small id="date_error" class="errr"></small>
+                                <!-- <span class="DateError"><p id="date_error"></p></span> -->
                             </div>
-                                <div class="mb-2"><!-- <label for="taskname">Start time</label> -->
-                                    <input type="text" class="textbox-n" id="startTime" placeholder="Choose time" ype="text" onfocus="(this.type='time')" onblur="(this.type='text')" id="dueDate" >
-                                    <span class="error"><p id="time_error"></p></span>
+                                <div class="taskInput mb-2"><!-- <label for="taskname">Start time</label> -->
+                                    <input type="text" class="textbox-n input" id="startTime" placeholder="Choose time" type="text"onfocus="(this.type='time')" onfocusout = "(this.type='text'); validateTime()" id="startTime">
+                                    <i id="timeSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
+                                    <i id="timeErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+                                    <small id="time_error" class="errr"></small>
+                                    <!-- <span class="timeError"><p id="time_error"></p></span> -->
                                 </div>
-                                    <!-- <div class="mb-2"><label for="taskname">Finish time</label>
-                                        <input type="time" id="finishTime" placeholder="Enter task name" >
-                                        <span class="error"><p id="name_error"></p></span>
-                                    </div> -->
-                                        <div class="mb-2"><!-- <label for="assignedTo">Assigned to</label> -->
-                                            <input type="text" id="assignedTo" placeholder="Assigned to" >
-                                            <span class="error"><p id="assignedTo_error"></p></span>
+                                        <div class="taskInput mb-2 "><!-- <label for="assignedTo">Assigned to</label> -->
+                                            <input type="text" id="assignedTo" class="input" placeholder="Assigned to" onfocusout = "validateAssignedTo() " >
+                                            <i id="assignedSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
+                                            <i id="assignedErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+                                            <small id="assigned_error" class="errr"></small>
+                                            <!-- <span class="assignedError"><p id="assignedTo_error"></p></span> -->
                                         </div>
                                         
-                                        <div class=" mb-2">
+                                        <div class="taskInput taskSelect mb-2 ">
                                             <!-- <label for="category">Category</label> -->
-                                            <select id="category" class="text-muted">
-                                                <option value="" disabled selected hidden>Choose category</option>
-                                                <option value="Call">Call</option>
-                                                <option value="Meeting">Meeting</option>
-                                                <option value="Family">Family</option>
-                                                <option value="Social">Social</option>
+                                            <i id="categorySuccessIcon" class="fa fa-check-circle" style="display: none"></i>
+                                            <i id="categoryErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+                                            <small id="category_error" class="errr"></small>
+                                            <select id="category" class="text-muted input" onfocusout = "validateCategory() ">
+                                                <option value = "" class="catOpt1" selected>Choose category</option>
+                                                <option value = "Call" class="catOpt2">Call</option>
+                                                <option value = "Meeting" class="catOp2">Meeting</option>
+                                                <option value = "Family" class="catOpt2">Family</option>
+                                                <option value = "Social" class="catOpt2">Social</option>
                                               </select>
-                                       
                                         </div>
-                                        <div class="dropdown">
+                                        <div class="taskInput taskSelect dropdown">
                                             <!-- <label for="status">Status</label> -->
-                                            <select id="status" class=" text-muted">
-                                                <option value="" disabled selected hidden>Choose status</option>
+                                            <i id="statusSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
+                                            <i  id="statusErrorIcon"class="fa fa-exclamation-circle" style="display: none"></i>
+                                            <small id="status_error" class="errr"></small>
+                                            <select id="status" class=" text-muted input">
+                                                <option id="" value="" disabled selected hidden>Choose status</option>
                                                 <option value="To do">To do</option>
                                                 <option value="In progress">In progress</option>
                                                 <option value="Review">Review</option>
                                                 <option value="Completed">Completed</option>
-                                              </select>
-                                              <input type="hidden" id="saveindex">
+                                                
+                                            </select>
+                                              <!-- <span class="statusError"><p id="assignedTo_error"></p></span> -->
+                                        </div>
                         </form>
                     </div>
                     <div class="modal-footer justify-content-center">
@@ -111,5 +127,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="./app.js"></script>
+<script src="./validation.js"></script>
 </body>
 </html>
+

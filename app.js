@@ -14,7 +14,8 @@ let startTime = document.querySelector("#startTime")
 let assignedTo = document.querySelector("#assignedTo")
 let category = document.querySelector("#category")
 let status = document.querySelector("#status")
-let id
+// let id
+
 // State declaration
 let tasksArray = []
 
@@ -33,7 +34,7 @@ class Task{
 }
 
 //class TaskManager containing add task to storage, get task from storage, add task to page, 
-//update task, delete task functions
+//update task, delete task, validate form functions
 class TaskManager{
   constructor() {
 }
@@ -43,7 +44,7 @@ addTaskToList(task) {
     const html = tasksArray
   .map( task =>
     `
-    <div id = "task${task.id}" class = "task">
+    <div id = "task${task.id}" class = "task ${task.status}">
     <div class="card time pt-0 mb-2">
     <div class="card-title p-1 ">
     <h5 class ="d-inline ml-1">${task.startTime} - ${task.name} - ${task.category}</h5>
@@ -54,13 +55,13 @@ addTaskToList(task) {
     <p class="card-subtitle ml-1">${task.description}</p>
     </div>
     <div class="card-footer p-1">
-    <h6 class="card-subtitle d-inline ml-1" >${task.date}</h6>
+    <h6 class="card-subtitle d-inline ml-1 taskDate" value="${task.date}" >${task.date}</h6>
     <h6 class="card-subtitle d-inline ml-4" >Assigned to: ${task.assignedTo}</h6>
     <h6 class="card-subtitle d-inline float-right mr-1" >Status: ${task.status}</h6>
     </div>
     </div>
     </div>
-    </div>
+    
      `)
      .join('')
      list.innerHTML = html
@@ -84,7 +85,7 @@ clearFields() {
 
 // Get tasks form storage
 getTasks() {
-  if(localStorage.getItem('tasks') === null) {
+  if(localStorage.getItem('tasks') == null) {
         tasksArray = []
       } else {
         tasksArray = JSON.parse(localStorage.getItem('tasks'))
@@ -107,18 +108,18 @@ updateTask(task) {
 
 // Delete tasks 
 removeTask(id) {
- 
   tasksArray = tasksArray.filter(task => task.id !== id)
   localStorage.setItem('tasks',JSON.stringify(tasksArray))
 }
 }
 
+
 // TaskManager class instantiated
-taskManager = new TaskManager();
+taskManager = new TaskManager()
 
 // Function to handle adding of tasks
-addButton.onclick = function() {
-  // e.preventDefault()
+addButton.onclick = function(e) {
+  e.preventDefault()
   let taskName = name.value
   let taskDescription = description.value
   let taskDate = date.value
@@ -134,11 +135,11 @@ const task = new Task(taskName,taskDescription,taskDate,taskStartTime,taskAssign
 taskManager.addTask(task)
 taskManager.addTaskToList(task)
 taskManager.clearFields()
-taskManager.displayTasks()
+location.reload()
 }
 
 // Function to run when add new task button is clicked
-modalButton.onclick = function() {
+  modalButton.onclick = function() {
   addButton.style.display="block"
   saveButton.style.display="none"
   modalTitle.innerText = "Add new Task"
@@ -150,11 +151,11 @@ list.addEventListener('click', function(e) {
 // Delete button
   if (e.target.closest('.delete')) {
     taskManager.removeTask(clickedId)
+    // taskManager.displayTasks()
     location.reload()
   }
   // Edit button
   if (e.target.closest('.edit')) {
-    
     const clickedTask = tasksArray.find((t) => clickedId == t.id)
     
     addButton.style.display="none"
@@ -197,8 +198,102 @@ list.addEventListener('click', function(e) {
 
 closeButton.onclick = function(){
   taskManager.clearFields()
+  // clearValidation()
+  location.reload()
 }
 
+
+const toDoButton = document.querySelector(".b1")
+toDoButton.onclick = function() {
+
+  taskManager.displayTasks()
+
+  progressTasks = document.querySelectorAll(".progress")
+  reviewTasks = document.querySelectorAll(".Review")
+  completedTasks = document.querySelectorAll(".Completed")
+  
+  for (let i = 0; i < reviewTasks.length; i++) {
+    reviewTasks[i].style.display = "none"
+  }  
+        for (let i = 0; i < completedTasks.length; i++) {
+          completedTasks[i].style.display = "none"
+        } 
+          for (let i = 0; i < progressTasks.length; i++) {
+            progressTasks[i].style.display = "none"
+          }
+}
+
+const progressButton = document.querySelector(".b2")
+progressButton.onclick = function() {
+
+  taskManager.displayTasks()
+
+  toDoTasks = document.querySelectorAll(".do")
+  reviewTasks = document.querySelectorAll(".Review")
+  completedTasks = document.querySelectorAll(".Completed")
+
+  for (let i = 0; i < reviewTasks.length; i++) {
+    reviewTasks[i].style.display = "none"
+  }  
+        for (let i = 0; i < completedTasks.length; i++) {
+          completedTasks[i].style.display = "none"
+        } 
+          for (let i = 0; i < toDoTasks.length; i++) {
+            toDoTasks[i].style.display = "none"
+          }
+}
+
+const reviewButton = document.querySelector(".b3")
+reviewButton.onclick = function() {
+
+  taskManager.displayTasks()
+
+  toDoTasks = document.querySelectorAll(".do")
+  progressTasks = document.querySelectorAll(".progress")
+  completedTasks = document.querySelectorAll(".Completed")
+
+  for (let i = 0; i < progressTasks.length; i++) {
+    progressTasks[i].style.display = "none"
+  }  
+        for (let i = 0; i < completedTasks.length; i++) {
+          completedTasks[i].style.display = "none"
+        } 
+          for (let i = 0; i < toDoTasks.length; i++) {
+            toDoTasks[i].style.display = "none"
+          }
+}
+
+const completeButton = document.querySelector(".b4")
+completeButton.onclick = function() {
+
+  taskManager.displayTasks()
+
+  toDoTasks = document.querySelectorAll(".do")
+  reviewTasks = document.querySelectorAll(".Review")
+  progressTasks = document.querySelectorAll(".progress")
+
+  for (let i = 0; i < reviewTasks.length; i++) {
+    reviewTasks[i].style.display = "none"
+  }  
+        for (let i = 0; i < progressTasks.length; i++) {
+          progressTasks[i].style.display = "none"
+        } 
+          for (let i = 0; i < toDoTasks.length; i++) {
+            toDoTasks[i].style.display = "none"
+          }
+}
+
+const allButton = document.querySelector(".b0")
+allButton.onclick = function() {
+  taskManager.displayTasks()
+}
+
+// const tmrwButton = document.querySelector(".b5")
+// tmrwButton.onclick = function () {
+//   taskDate = document.querySelectorAll(".taskDate").textContent
+//   date = taskDate.toString
+//   console.log(date.toString())
+// }
 // Load tasks from storage on page load
 document.addEventListener('DOMContentLoaded', taskManager.displayTasks())
 
@@ -208,4 +303,4 @@ document.addEventListener('DOMContentLoaded', taskManager.displayTasks())
 
 
 
-
+       
