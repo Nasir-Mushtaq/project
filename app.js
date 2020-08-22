@@ -55,7 +55,7 @@ addTaskToList(task) {
     <p class="card-subtitle ml-1">${task.description}</p>
     </div>
     <div class="card-footer p-1">
-    <h6 class="card-subtitle d-inline ml-1 taskDate" value="${task.date}" >${task.date}</h6>
+    <h6 class="card-subtitle d-inline ml-1 taskDate" >${task.date}</h6>
     <h6 class="card-subtitle d-inline ml-4" >Assigned to: ${task.assignedTo}</h6>
     <h6 class="card-subtitle d-inline float-right mr-1" >Status: ${task.status}</h6>
     </div>
@@ -85,7 +85,7 @@ clearFields() {
 
 // Get tasks form storage
 getTasks() {
-  if(localStorage.getItem('tasks') == null) {
+  if(localStorage.getItem('tasks') === null) {
         tasksArray = []
       } else {
         tasksArray = JSON.parse(localStorage.getItem('tasks'))
@@ -288,12 +288,176 @@ allButton.onclick = function() {
   taskManager.displayTasks()
 }
 
-const tmrwButton = document.querySelector(".b5")
-tmrwButton.onclick = function () {
-  taskDate = document.querySelectorAll(".taskDate")
-  date = taskDate.toString
-  console.log(date)
+let todaysDate = function(){
+let today = new Date()
+let day = today.getDate() 
+let month = today.getMonth() + 1
+let yyyy = today.getFullYear()
+
+if (day < 10) { 
+    day = '0' + dd; 
+} 
+if (month < 10) { 
+    month = '0' + month; 
+} 
+today = yyyy + '-' + month + '-' + day; 
+return today
+} 
+console.log(todaysDate())
+
+let tmrwsDate = function (){
+  let tomorrow = new Date();
+  tomorrow.setDate(new Date().getDate()+1);
+  let day = tomorrow.getDate() 
+  let month = tomorrow.getMonth() + 1
+  let yyyy = tomorrow.getFullYear()
+
+  if (day < 10) { 
+    day = '0' + dd; 
+  } 
+  if (month < 10) { 
+    month = '0' + month; 
+  } 
+  tomorrow = yyyy + '-' + month + '-' + day; 
+  return tomorrow
 }
+
+let plus2Days = function (){
+  let tomorrow = new Date();
+  tomorrow.setDate(new Date().getDate()+2);
+  let day = tomorrow.getDate() 
+  let month = tomorrow.getMonth() + 1
+  let yyyy = tomorrow.getFullYear()
+
+  if (day < 10) { 
+    day = '0' + dd; 
+  } 
+  if (month < 10) { 
+    month = '0' + month; 
+  } 
+  tomorrow = yyyy + '-' + month + '-' + day; 
+  return tomorrow
+}
+
+let plus3Days = function (){
+  let tomorrow = new Date();
+  tomorrow.setDate(new Date().getDate()+3);
+  let day = tomorrow.getDate() 
+  let month = tomorrow.getMonth() + 1
+  let yyyy = tomorrow.getFullYear()
+
+  if (day < 10) { 
+    day = '0' + dd; 
+  } 
+  if (month < 10) { 
+    month = '0' + month; 
+  } 
+  tomorrow = yyyy + '-' + month + '-' + day; 
+  return tomorrow
+}
+
+// tmrwsDate()
+// console.log(tmrwsDate())
+
+//Filter by date
+// let tmrwDate = Object.values(taskDate).filter(task => task.innerHTML == tmrwsDate())
+// let pl2Date = Object.values(taskDate).filter(task => task.innerHTML == plus2Days())
+// let pl3Date = Object.values(taskDate).filter(task => task.innerHTML == plus3Days())
+
+//Today's tasks
+const todayButton = document.querySelector(".b5")
+todayButton.onclick = function () {
+
+    taskManager.displayTasks()
+
+    const taskDate = document.querySelectorAll(".taskDate")
+
+    let date = Object.values(taskDate).filter(task => task.innerHTML == todaysDate())
+    let remaining = Object.values(taskDate).filter(task => !date.includes(task))
+
+    for (let i = 0; i < remaining.length; i++) {
+      remaining[i].parentElement.parentElement.style.display = "none"
+  }  
+}
+
+// //Tomorrows tasks
+const tomorrowButton = document.querySelector(".b6")
+tomorrowButton.onclick = function () {
+
+  taskManager.displayTasks()
+
+  const taskDate = document.querySelectorAll(".taskDate")
+
+  let date = Object.values(taskDate).filter(task => task.innerHTML == tmrwsDate())
+  let remaining = Object.values(taskDate).filter(task => !date.includes(task))
+
+  for (let i = 0; i < remaining.length; i++) {
+    remaining[i].parentElement.parentElement.style.display = "none"
+}  
+}
+
+const plus2Button = document.querySelector(".b7")
+plus2Button.onclick = function () {
+
+  taskManager.displayTasks()
+
+  const taskDate = document.querySelectorAll(".taskDate")
+
+  let date = Object.values(taskDate).filter(task => task.innerHTML == plus2Days())
+  let remaining = Object.values(taskDate).filter(task => !date.includes(task))
+
+  for (let i = 0; i < remaining.length; i++) {
+    remaining[i].parentElement.parentElement.style.display = "none"
+}  
+}
+
+const plus3Button = document.querySelector(".b8")
+plus3Button.onclick = function () {
+
+  taskManager.displayTasks()
+
+  const taskDate = document.querySelectorAll(".taskDate")
+
+  let date = Object.values(taskDate).filter(task => task.innerHTML == plus3Days())
+  let remaining = Object.values(taskDate).filter(task => !date.includes(task))
+
+  for (let i = 0; i < remaining.length; i++) {
+    remaining[i].parentElement.parentElement.style.display = "none"
+}  
+}
+
+  
+ 
+  
+//   for (let i = 0; i < tDate.length; i++) {
+//     tDate[i].parentElement.parentElement.style.display = "none"
+//   }  
+//   console.log(tDate)
+// }
+
+// //+2 days
+// const plus2Button = document.querySelector(".b7")
+// todayButton.onclick = function () {
+  
+//   let tDate = Object.values(taskDate).filter(task => task.innerHTML == todaysDate())
+  
+//   for (let i = 0; i < tDate.length; i++) {
+//     tDate[i].parentElement.parentElement.style.display = "none"
+//   }  
+//   console.log(tDate)
+// }
+
+// //+3 days
+// const plus3Button = document.querySelector(".b5")
+// todayButton.onclick = function () {
+  
+//   let tDate = Object.values(taskDate).filter(task => task.innerHTML == todaysDate())
+  
+//   for (let i = 0; i < tDate.length; i++) {
+//     tDate[i].parentElement.parentElement.style.display = "none"
+//   }  
+//   console.log(tDate)
+// }
 // Load tasks from storage on page load
 document.addEventListener('DOMContentLoaded', taskManager.displayTasks())
 

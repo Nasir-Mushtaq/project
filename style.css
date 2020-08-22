@@ -2,6 +2,8 @@ body {
   font-family: "Prompt", sans-serif;
   box-sizing: border-box;
   margin: 0;
+  background-image: linear-gradient(rgba(199, 199, 199, 0.979), rgb(182, 182, 182));
+  background-repeat: no-repeat;
 }
 
 .container {
@@ -58,7 +60,7 @@ p {
   padding-top: 40px;
 }
 #taskList {
-  height: 600px;
+  height:500px;
   overflow-y: auto;
 }
 .right {
