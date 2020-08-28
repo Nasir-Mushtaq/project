@@ -1,4 +1,5 @@
 export default class Validate {
+
   constructor(name, description, date, startTime, assignedTo, category, status){
     this.name = name
     this.description = description
@@ -9,7 +10,7 @@ export default class Validate {
     this.status = status
   }
   
-  validateName() {
+ validateName() {
 
   let input = this.name.value
   console.log(input)

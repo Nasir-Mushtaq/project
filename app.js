@@ -1,4 +1,5 @@
 //Global variable declarations
+
 import TaskManager from "./taskmanager.js"
 import Validate from "./validation.js"
 import image from "/images/empty.png"
@@ -46,8 +47,8 @@ class Task{
 const taskManager = new TaskManager(list)
 const validate = new Validate(name, description, date, startTime, assignedTo, category, status)
 
-name.addEventListener("blur", validate.validateName) 
-description.addEventListener("blur", validate.validateName) 
+// name.addEventListener("blur", validate.validateName) 
+// description.addEventListener("blur", validate.validateName) 
 
 // Function to handle adding of tasks
 addButton.onclick = function(e) {
