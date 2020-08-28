@@ -1,7 +1,7 @@
 //Global variable declarations
 import TaskManager from "./taskmanager.js"
 import Validate from "./validation.js"
-
+import image from "/images/empty.png"
 
 const list = document.getElementById('taskList')
 const saveButton = document.getElementById ("saveTaskButton")
@@ -83,7 +83,7 @@ location.reload()
 }
 
 // Function to run when add new task button is clicked
-  modalButton.onclick = function() {
+modalButton.onclick = function() {
   addButton.style.display="block"
   saveButton.style.display="none"
   modalTitle.innerText = "Add new Task"
@@ -169,14 +169,11 @@ toDoButton.onclick = () => {
 }
 }
 
-
 //Tasks in progress
 progressButton.onclick = () => {
-
   taskManager.displayTasks()
-  
   const taskStatus = document.querySelectorAll(".taskStatus")
-  console.log(taskStatus)
+
   let status = Object.values(taskStatus).filter(task => task.innerHTML == "Status: In Progress")
   let remaining = Object.values(taskStatus).filter(task => !status.includes(task))
 
@@ -187,11 +184,9 @@ progressButton.onclick = () => {
 
 //Tasks in review
 reviewButton.onclick = () => {
-
   taskManager.displayTasks()
-
   const taskStatus = document.querySelectorAll(".taskStatus")
-  console.log(taskStatus)
+
   let status = Object.values(taskStatus).filter(task => task.innerHTML == "Status: Review")
   let remaining = Object.values(taskStatus).filter(task => !status.includes(task))
 
@@ -202,11 +197,9 @@ reviewButton.onclick = () => {
 
 //Tasks completed
 completeButton.onclick = () => {
-
   taskManager.displayTasks()
-
   const taskStatus = document.querySelectorAll(".taskStatus")
-  console.log(taskStatus)
+
   let status = Object.values(taskStatus).filter(task => task.innerHTML == "Status: Completed")
   let remaining = Object.values(taskStatus).filter(task => !status.includes(task))
 
@@ -222,7 +215,7 @@ allButton.onclick = () => {
 
 // Date filter
 // Get today's date
-todaysDate = () => {
+let todaysDate = () => {
 let today = new Date()
 let day = today.getDate() 
 let month = today.getMonth() + 1
@@ -239,7 +232,7 @@ return today
 } 
 
 // get tomorrows date
-tmrwsDate = () => {
+let tmrwsDate = () => {
   let tomorrow = new Date();
   tomorrow.setDate(new Date().getDate()+1);
   let day = tomorrow.getDate() 
@@ -257,7 +250,7 @@ tmrwsDate = () => {
 }
 
 // get plus 2 days date
-plus2Days = () => {
+let plus2Days = () => {
   let tomorrow = new Date();
   tomorrow.setDate(new Date().getDate()+2);
   let day = tomorrow.getDate() 
@@ -275,7 +268,7 @@ plus2Days = () => {
 }
 
 // get plus 3 days date 
-plus3Days = () => {
+let plus3Days = () => {
   let tomorrow = new Date();
   tomorrow.setDate(new Date().getDate()+3);
   let day = tomorrow.getDate() 
@@ -295,9 +288,7 @@ plus3Days = () => {
 //Today's tasks
 
 todayButton.onclick = () => {
-
     taskManager.displayTasks()
-
     const taskDate = document.querySelectorAll(".taskDate")
 
     let date = Object.values(taskDate).filter(task => task.innerHTML == todaysDate())
@@ -310,9 +301,7 @@ todayButton.onclick = () => {
 
 // //Tomorrows tasks
 tomorrowButton.onclick = () => {
-
   taskManager.displayTasks()
-
   const taskDate = document.querySelectorAll(".taskDate")
 
   let date = Object.values(taskDate).filter(task => task.innerHTML == tmrwsDate())
@@ -324,9 +313,7 @@ tomorrowButton.onclick = () => {
 }
 
 plus2Button.onclick = () => {
-
   taskManager.displayTasks()
-
   const taskDate = document.querySelectorAll(".taskDate")
 
   let date = Object.values(taskDate).filter(task => task.innerHTML == plus2Days())
@@ -338,9 +325,7 @@ plus2Button.onclick = () => {
 }
 
 plus3Button.onclick = () => {
-
   taskManager.displayTasks()
-
   const taskDate = document.querySelectorAll(".taskDate")
 
   let date = Object.values(taskDate).filter(task => task.innerHTML == plus3Days())
@@ -351,7 +336,7 @@ plus3Button.onclick = () => {
 }  
 }
 
-findDay = () => {
+let findDay = () => {
   let days = [
     "Sunday",
     "Monday",
@@ -361,14 +346,24 @@ findDay = () => {
     "Friday",
     "Saturday"
 ]
-
   const todayPlus2 = days[new Date(plus2Days()).getDay()]
   const todayPlus3 = days[new Date(plus3Days()).getDay()]
   plus2Button.innerText = todayPlus2
   plus3Button.innerText = todayPlus3
-
 }
 
+ // Display image when there are no tasks in Array
+
+let emptyList = () => {
+  
+  let html = `
+  <div>
+  <img src="${image}">
+  </div>`
+  if(list.innerHTML === ""){
+    list.innerHTML = html
+  }
+}
 // Load tasks from storage on page load
-document.addEventListener('DOMContentLoaded', findDay(), taskManager.displayTasks())
+document.addEventListener('DOMContentLoaded', findDay(), emptyList(), taskManager.displayTasks())
 

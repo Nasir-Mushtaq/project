@@ -42,8 +42,7 @@ export default class TaskManager{
     const tasks = this.getTasks()
     tasks.forEach((task) => this.addTaskToList(task))
     this.addImage()
-    this.emptyList()
-  }
+ }
 
   addImage () {
   
@@ -106,16 +105,7 @@ export default class TaskManager{
     this.tasksArray = this.tasksArray.filter(task => task.id !== id)
     localStorage.setItem('tasks',JSON.stringify(this.tasksArray))
   }
-  // Display image when there are no tasks in Array
-  emptyList = () => {
-    let html = `
-    <div>
-    <img src="images/empty.png" alt="">
-    </div>`
-    // console.log("empty")
-    if(list.innerHTML === ""){
-      list.innerHTML = html
-    }
-  }
+ 
+
   }
   

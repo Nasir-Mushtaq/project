@@ -208,6 +208,9 @@ body {
   /* filter: saturate(3); */
 }
 
+.modal {
+  width: 1500px;
+}
 .modal-title {
   text-align: center;
 }
