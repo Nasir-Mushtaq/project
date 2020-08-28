@@ -1,0 +1,31 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "final project",
+  "main": "app.js",
+  
+    "scripts": {
+      "start": "parcel index.html",
+      "build": "parcel build index.html",
+      "test": "jest --watch"
+    }
+  ,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nasir-Mushtaq/project.git"
+  },
+  "keywords": [],
+  "author": "Nasir",
+  "license": "ABC",
+  "bugs": {
+    "url": "https://github.com/Nasir-Mushtaq/project/issues"
+  },
+  "homepage": "https://github.com/Nasir-Mushtaq/project#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.2",
+    "parcel": "^1.12.4"
+  }
+}

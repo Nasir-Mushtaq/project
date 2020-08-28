@@ -1,118 +1,106 @@
-// function clearValidation() {
-//   let input = document.querySelectorAll(".input")
-//   let error = document.querySelectorAll(".errr")
-//   console.log(error)
-//   let successIcon = document.querySelectorAll(".fa-check-circle")
-//   console.log(successIcon)
-//   let errorIcon = document.querySelectorAll(".fa-exclamation-circle")
-//   console.log(successIcon)
+export default class Validate {
+  constructor(name, description, date, startTime, assignedTo, category, status){
+    this.name = name
+    this.description = description
+    this.date = date
+    this.startTime = startTime
+    this.assignedTo = assignedTo
+    this.category = category
+    this.status = status
+  }
+  
+  validateName() {
 
+  let input = this.name.value
+  console.log(input)
+  let error = document. querySelector("#name_error")
+  const successIcon = document.getElementById("nameSuccessIcon")
+  const errorIcon = document.getElementById("nameErrorIcon")
+  
+    if (input == "" || input.length <= 6 || input.length >= 25) {
+      error.innerText = "Please enter between 6 & 25 letters"
+      this.name.classList.add("error")
+      this.name.classList.remove("success")
+      errorIcon.style.display = "block"
+      successIcon.style.display = "none"
+      console.log(error.innerText)
+      return false
+    }
+    if (input.length >= 6 || input.length <= 25) {
+      error.innerHTML = ""
+      this.name.classList.add("success")
+      this.name.classList.remove("error")
+      successIcon.style.display = "block"
+      errorIcon.style.display = "none"
+      console.log("hi")
+      return true
+    }
+      
+  }
 
+  validateDescription() {
 
- 
-//   let a
-//   for (a = 0; a < input.length; a++) {
-//     input[a].style.borderStyle = "none"
-//   }
-//   let x
-//   for (x = 0; x < successIcon.length; x++) {
-//     successIcon[x].style.display = "none"
-//   }
-//   let y
-//   for (y = 0; y < errorIcon.length; y++) {
-//     errorIcon[y].style.display = "none"
-//   }
-//   let z
-//   for (z = 0; y < error.length; y++) {
-//     error[z].innerText = ""
-//     console.log(z)
-//   }
-// }
+      let input = this.description.value
+      let error = document. querySelector("#description_error")
+      const successIcon = document.getElementById("descriptionSuccessIcon")
+      const errorIcon = document.getElementById("descriptionErrorIcon")
+      
+        if (input == "" || input.length <= 6 || input.length >= 100) {
+          error.innerText = "Please enter between 6 & 100 letters"
+          this.description.classList.add("error")
+          this.description.classList.remove("success")
+          errorIcon.style.display = "block"
+          successIcon.style.display = "none"
+          console.log(error.innerText)
+          return false
+        }
+        if (input.length >= 6 || input.lenght <= 100) {
+          error.innerHTML = ""
+          this.description.classList.add("success")
+          this.description.classList.remove("error")
+          successIcon.style.display = "block"
+          errorIcon.style.display = "none"
+          return true
+        }
+      }
 
-function validateName(min, max) {
-    let input = name.value
-    let error = document. querySelector("#name_error")
-    const successIcon = document.getElementById("nameSuccessIcon")
-    const errorIcon = document.getElementById("nameErrorIcon")
+  validateDate() {
+    let input = date.value
+    let error = document. querySelector("#date_error")
+    const successIcon = document.querySelector("#dateSuccessIcon")
+    const errorIcon = document.querySelector("#dateErrorIcon")
     
-      if (input == "" || input.length <= min || input.length >= max) {
-        error.innerText = "Please enter between "+min+" & "+max+" letters"
-        name.classList.add("error")
-        name.classList.remove("success")
+      if (input == "") {
+        error.innerText = "Please choose a date"
+        date.classList.add("error")
+        date.classList.remove("success")
         errorIcon.style.display = "block"
         successIcon.style.display = "none"
         console.log(error.innerText)
         return false
       }
-      if (input.length >= min || input.length <= max) {
+      else {
         error.innerHTML = ""
-        name.classList.add("success")
-        console.log(name.classList)
-        name.classList.remove("error")
+        date.classList.add("success")
+        console.log(description.classList)
+        description.classList.remove("error")
         successIcon.style.display = "block"
         errorIcon.style.display = "none"
-        console.log("hi")
         return true
-
       }
-        // else {
-        //   error.innerHTML = ""
-        //   name.classList.remove("error")
-        //   name.classList.remove("success")
-        //   successIcon.style.display = "none"
-        //   errorIcon.style.display = "none"
-        // }
-        
     }
 
-    function validateDescription(min, max) {
-
-        let input = description.value
-        let error = document. querySelector("#description_error")
-        const successIcon = document.getElementById("descriptionSuccessIcon")
-        const errorIcon = document.getElementById("descriptionErrorIcon")
-        
-          if (input == "" || input.length <= min || input.length >= max) {
-            error.innerText = "Please enter between "+min+" & "+max+" letters"
-            description.classList.add("error")
-            description.classList.remove("success")
-
-            errorIcon.style.display = "block"
-            successIcon.style.display = "none"
-            console.log(error.innerText)
-            return false
-          }
-          if (input.length >= min || input.lenght <= max) {
-            error.innerHTML = ""
-            description.classList.add("success")
-            console.log(description.classList)
-            description.classList.remove("error")
-            successIcon.style.display = "block"
-            errorIcon.style.display = "none"
-            return true
-          }
-            // else {
-            //   error.innerHTML = ""
-            //   console.log(hi)
-            //   description.classList.remove("error")
-            //   description.classList.remove("success")
-            //   successIcon.style.display = "none"
-            //   errorIcon.style.display = "none"
-              
-            // }
-        }
-
-    function validateDate() {
-      console.log("date")
-      let input = date.value
-      let error = document. querySelector("#date_error")
-      const successIcon = document.querySelector("#dateSuccessIcon")
-      const errorIcon = document.querySelector("#dateErrorIcon")
+    validateTime() {
+      console.log("startTime")
+      let input = startTime.value
+      let error = document. querySelector("#time_error")
+      const successIcon = document.querySelector("#timeSuccessIcon")
+      const errorIcon = document.querySelector("#timeErrorIcon")
       
         if (input == "") {
-          error.innerText = "Please choose a date"
-          date.classList.add("error")
-          date.classList.remove("success")
+          error.innerText = "Please choose a time"
+          startTime.classList.add("error")
+          startTime.classList.remove("success")
           errorIcon.style.display = "block"
           successIcon.style.display = "none"
           console.log(error.innerText)
@@ -120,7 +108,7 @@ function validateName(min, max) {
         }
         else {
           error.innerHTML = ""
-          date.classList.add("success")
+          startTime.classList.add("success")
           console.log(description.classList)
           description.classList.remove("error")
           successIcon.style.display = "block"
@@ -129,17 +117,17 @@ function validateName(min, max) {
         }
       }
 
-      function validateTime() {
-        console.log("startTime")
-        let input = startTime.value
-        let error = document. querySelector("#time_error")
-        const successIcon = document.querySelector("#timeSuccessIcon")
-        const errorIcon = document.querySelector("#timeErrorIcon")
+      validateAssignedTo() {
+        console.log("assigned")
+        let input = assignedTo.value
+        let error = document. querySelector("#assigned_error")
+        const successIcon = document.querySelector("#assignedSuccessIcon")
+        const errorIcon = document.querySelector("#assignedErrorIcon")
         
-          if (input == "") {
-            error.innerText = "Please choose a time"
-            startTime.classList.add("error")
-            startTime.classList.remove("success")
+          if (input == "" || input <= 3) {
+            error.innerText = "Please choose task assignee"
+            assignedTo.classList.add("error")
+            assignedTo.classList.remove("success")
             errorIcon.style.display = "block"
             successIcon.style.display = "none"
             console.log(error.innerText)
@@ -147,64 +135,81 @@ function validateName(min, max) {
           }
           else {
             error.innerHTML = ""
-            startTime.classList.add("success")
-            console.log(description.classList)
-            description.classList.remove("error")
+            assignedTo.classList.add("success")
+            assignedTo.classList.remove("error")
             successIcon.style.display = "block"
             errorIcon.style.display = "none"
             return true
           }
         }
 
-        function validateAssignedTo() {
-          console.log("assigned")
-          let input = assignedTo.value
-          let error = document. querySelector("#assigned_error")
-          const successIcon = document.querySelector("#assignedSuccessIcon")
-          const errorIcon = document.querySelector("#assignedErrorIcon")
+        validateCategory() {
+          let error = document. querySelector("#category_error")
+          const successIcon = document.querySelector("#categorySuccessIcon")
+          const errorIcon = document.querySelector("#categoryErrorIcon")
           
-            if (input == "" || input <= 3) {
-              error.innerText = "Please choose assignee"
-              assignedTo.classList.add("error")
-              assignedTo.classList.remove("success")
+            if (category.value == "") {
+              console.log("hello")
+              error.innerText = "Please choose a category"
+              category.classList.add("error")
+              category.classList.remove("success")
               errorIcon.style.display = "block"
               successIcon.style.display = "none"
-              console.log(error.innerText)
               return false
             }
-            else {
+           else {
+              console.log("hi")
               error.innerHTML = ""
-              assignedTo.classList.add("success")
-              assignedTo.classList.remove("error")
+              category.classList.add("success")
+              category.classList.remove("error")
               successIcon.style.display = "block"
               errorIcon.style.display = "none"
               return true
             }
           }
 
-          function validateCategory() {
-            let input = category
-            console.log(input.options[2].value)
-            let error = document. querySelector("#category_error")
-            const successIcon = document.querySelector("#categorySuccessIcon")
-            const errorIcon = document.querySelector("#categoryErrorIcon")
-            
-              if (input.options[0].value == "") {
-                console.log("hello")
-                error.innerText = "Please choose a category"
-                category.classList.add("error")
-                category.classList.remove("success")
-                errorIcon.style.display = "block"
-                successIcon.style.display = "none"
-                return false
-              }
-             if (input.options[1].value == "Call"){
-                console.log("hi")
+           validateStatus() {
+            let error = document. querySelector("#status_error")
+            const successIcon = document.querySelector("#statusSuccessIcon")
+            console.log(successIcon)
+            const errorIcon = document.querySelector("#statusErrorIcon")
+           
+            if (status.value === "N/A") {
+              error.innerText = "Please choose task status"
+              status.classList.add("error")
+              status.classList.remove("success")
+              errorIcon.style.display = "block"
+              successIcon.style.display = "none"
+              return false
+            }
+
+            else {
                 error.innerHTML = ""
-                category.classList.add("success")
-                category.classList.remove("error")
+                status.classList.add("success")
+                status.classList.remove("error")
                 successIcon.style.display = "block"
                 errorIcon.style.display = "none"
                 return true
               }
             }
+
+            validateForm() {
+             
+              if(
+              this.validateName()  && 
+              this.validateDescription() && 
+              this.validateDate() && 
+              this.validateTime() && 
+              this.validateAssignedTo() && 
+              this.validateCategory() && 
+              this.validateStatus()
+              ) {
+                return true
+              }
+              else {
+                return false
+              }
+          }
+        }
+  
+         

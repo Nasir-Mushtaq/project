@@ -1,11 +1,14 @@
 //Global variable declarations
+import TaskManager from "./taskmanager.js"
+import Validate from "./validation.js"
+
 
 const list = document.getElementById('taskList')
-let saveButton = document.getElementById ("saveTaskButton")
-let modalTitle = document.getElementById ("modalTitle")
-let modalButton = document.getElementById ("modalButton")
-let closeButton = document.getElementById("close")
-let addButton = document.getElementById("addTaskButton")
+const saveButton = document.getElementById ("saveTaskButton")
+const modalTitle = document.getElementById ("modalTitle")
+const modalButton = document.getElementById ("modalButton")
+const closeButton = document.getElementById("close")
+const addButton = document.getElementById("addTaskButton")
 
 let name = document.querySelector("#taskName")
 let description = document.querySelector("#taskDescription")
@@ -14,10 +17,16 @@ let startTime = document.querySelector("#startTime")
 let assignedTo = document.querySelector("#assignedTo")
 let category = document.querySelector("#category")
 let status = document.querySelector("#status")
-// let id
 
-// State declaration
-let tasksArray = []
+const toDoButton = document.querySelector(".b1")
+const progressButton = document.querySelector(".b2")
+const reviewButton = document.querySelector(".b3")
+const completeButton = document.querySelector(".b4")
+const todayButton = document.querySelector(".b5")
+const tomorrowButton = document.querySelector(".b6")
+const plus2Button = document.querySelector(".b7")
+const plus3Button = document.querySelector(".b8")
+const allButton = document.querySelector(".b0")
 
 //class Task 
 class Task{
@@ -33,93 +42,27 @@ class Task{
   }
 }
 
-//class TaskManager containing add task to storage, get task from storage, add task to page, 
-//update task, delete task, validate form functions
-class TaskManager{
-  constructor() {
-}
-
-//Creation of task cards 
-addTaskToList(task) {
-    const html = tasksArray
-  .map( task =>
-    `
-    <div id = "task${task.id}" class = "${task.status}" task >
-    <div class="card time pt-0 mb-2">
-    <div class="card-title p-1 ">
-    <h5 class ="d-inline ml-1">${task.startTime} - ${task.name} - ${task.category}</h5>
-    <a href="#" class="card-link float-right p-0 ml-1 mr-1"><option value="${task.id}"class = "fa fa-trash fa-2x delete"></option></a>
-    <a href="#" class="card-link float-right p-0 mr-1" data-toggle="modal" data-target="#abc"><option value="${task.id}" class ="fa fa-edit fa-2x edit"></option></a>
-    </div>
-    <div class="card-body ml-1 ">
-    <p class="card-subtitle ml-1">${task.description}</p>
-    </div>
-    <div class="card-footer p-1">
-    <h6 class="card-subtitle d-inline ml-1 taskDate" >${task.date}</h6>
-    <h6 class="card-subtitle d-inline ml-4" >Assigned to: ${task.assignedTo}</h6>
-    <h6 class="card-subtitle d-inline float-right mr-1" >Status: ${task.status}</h6>
-    </div>
-    </div>
-    </div>
-    
-     `)
-     .join('')
-     list.innerHTML = html
-}
-
-// Display task on page
-displayTasks() {
-  const tasks = this.getTasks()
-  tasks.forEach((task) => this.addTaskToList(task))
-}
-// Clear modal form fields
-clearFields() {
-  document.getElementById("taskName").value = ''
-  document.getElementById("taskDescription").value = ''
-  document.getElementById("dueDate").value = ''
-  document.getElementById("startTime").value = ''
-  document.getElementById("assignedTo").value = ''
-  document.getElementById("category").value = ''
-  document.getElementById("status").value = ''
-  }
-
-// Get tasks form storage
-getTasks() {
-  if(localStorage.getItem('tasks') === null) {
-        tasksArray = []
-      } else {
-        tasksArray = JSON.parse(localStorage.getItem('tasks'))
-      }
-    return tasksArray
-}
-
-// Add tasks to storage
- addTask(task) {
-    const tasks = tasksArray
-    tasks.push(task)
-    localStorage.setItem('tasks',JSON.stringify(tasks))
-}
-
-// Update tasks in storage after edit
-updateTask(task) {
-  const tasks = tasksArray
-  localStorage.setItem('tasks',JSON.stringify(tasks))
-}
-
-// Delete tasks 
-removeTask(id) {
-  tasksArray = tasksArray.filter(task => task.id !== id)
-  localStorage.setItem('tasks',JSON.stringify(tasksArray))
-}
-}
-
-
 // TaskManager class instantiated
-taskManager = new TaskManager()
+const taskManager = new TaskManager(list)
+const validate = new Validate(name, description, date, startTime, assignedTo, category, status)
+
+name.addEventListener("blur", validate.validateName) 
+description.addEventListener("blur", validate.validateName) 
 
 // Function to handle adding of tasks
 addButton.onclick = function(e) {
-  e.preventDefault()
+
+  if(!validate.validateForm()) {
+    e.preventDefault()
+    addButton.setAttribute("data-dismiss", "")
+    console.log("stuck")
+  }
+  else {  
+    addButton.setAttribute("data-dismiss", "modal")
+    console.log("hello")
+  
+  console.log("form validation")
+  
   let taskName = name.value
   let taskDescription = description.value
   let taskDate = date.value
@@ -136,6 +79,7 @@ taskManager.addTask(task)
 taskManager.addTaskToList(task)
 taskManager.clearFields()
 location.reload()
+   }
 }
 
 // Function to run when add new task button is clicked
@@ -146,7 +90,7 @@ location.reload()
 }
 
 // Functions for adding, editing and deleting tasks when relevant buttons are clicked
-list.addEventListener('click', function(e) {
+taskManager.list.addEventListener('click', function(e) {
   let clickedId = parseInt(e.target.value)
 // Delete button
   if (e.target.closest('.delete')) {
@@ -156,7 +100,7 @@ list.addEventListener('click', function(e) {
   }
   // Edit button
   if (e.target.closest('.edit')) {
-    const clickedTask = tasksArray.find((t) => clickedId == t.id)
+    const clickedTask = taskManager.tasksArray.find((t) => clickedId == t.id)
     
     addButton.style.display="none"
     saveButton.style.display="block"
@@ -169,12 +113,21 @@ list.addEventListener('click', function(e) {
     assignedTo.value = clickedTask.assignedTo
     category.value = clickedTask.category
     status.value = clickedTask.status
-    id = clickedTask.id
+    let id = clickedTask.id
 
     // Save button
     saveButton.onclick = function(){
 
-      updatedTask = {
+      if(!validate.validateForm()) {
+        e.preventDefault()
+        saveButton.setAttribute("data-dismiss", "")
+        console.log("stuck")
+      }
+      else {  
+        saveButton.setAttribute("data-dismiss", "modal")
+        console.log("hello")
+
+     let updatedTask = {
         name: name.value,
         description: description.value,
         date: date.value,
@@ -185,110 +138,91 @@ list.addEventListener('click', function(e) {
         id: clickedId
       }
       // Find array index to update
-      let index = tasksArray.map(function(el) {
+      let index = taskManager.tasksArray.map(function(el) {
         return el.id
       }).indexOf(id)
-      tasksArray.splice(index, 1, updatedTask)
+      taskManager.tasksArray.splice(index, 1, updatedTask)
       taskManager.updateTask()
       taskManager.clearFields()
       taskManager.displayTasks()
+    }
   }
   }  
 })
 
-closeButton.onclick = function(){
+//Close button 
+closeButton.onclick = () => {  
   taskManager.clearFields()
-  // clearValidation()
   location.reload()
 }
 
-
-const toDoButton = document.querySelector(".b1")
-toDoButton.onclick = function() {
-
+// Filter by status
+toDoButton.onclick = () => {
   taskManager.displayTasks()
-
-  progressTasks = document.querySelectorAll(".Progress")
-  reviewTasks = document.querySelectorAll(".Review")
-  completedTasks = document.querySelectorAll(".Completed")
   
-  for (let i = 0; i < reviewTasks.length; i++) {
-    reviewTasks[i].style.display = "none"
-  }  
-        for (let i = 0; i < completedTasks.length; i++) {
-          completedTasks[i].style.display = "none"
-        } 
-          for (let i = 0; i < progressTasks.length; i++) {
-            progressTasks[i].style.display = "none"
-          }
+    const taskStatus = document.querySelectorAll(".taskStatus")
+    let status = Object.values(taskStatus).filter(task => task.innerHTML == "Status: To do")
+    let remaining = Object.values(taskStatus).filter(task => !status.includes(task))
+
+    for (let i = 0; i < remaining.length; i++) {
+      remaining[i].parentElement.parentElement.style.display = "none"
+}
 }
 
-const progressButton = document.querySelector(".b2")
-progressButton.onclick = function() {
+
+//Tasks in progress
+progressButton.onclick = () => {
+
+  taskManager.displayTasks()
+  
+  const taskStatus = document.querySelectorAll(".taskStatus")
+  console.log(taskStatus)
+  let status = Object.values(taskStatus).filter(task => task.innerHTML == "Status: In Progress")
+  let remaining = Object.values(taskStatus).filter(task => !status.includes(task))
+
+  for (let i = 0; i < remaining.length; i++) {
+    remaining[i].parentElement.parentElement.style.display = "none"
+}
+}
+
+//Tasks in review
+reviewButton.onclick = () => {
 
   taskManager.displayTasks()
 
-  toDoTasks = document.querySelectorAll(".do")
-  reviewTasks = document.querySelectorAll(".Review")
-  completedTasks = document.querySelectorAll(".Completed")
+  const taskStatus = document.querySelectorAll(".taskStatus")
+  console.log(taskStatus)
+  let status = Object.values(taskStatus).filter(task => task.innerHTML == "Status: Review")
+  let remaining = Object.values(taskStatus).filter(task => !status.includes(task))
 
-  for (let i = 0; i < reviewTasks.length; i++) {
-    reviewTasks[i].style.display = "none"
-  }  
-        for (let i = 0; i < completedTasks.length; i++) {
-          completedTasks[i].style.display = "none"
-        } 
-          for (let i = 0; i < toDoTasks.length; i++) {
-            toDoTasks[i].style.display = "none"
-          }
+  for (let i = 0; i < remaining.length; i++) {
+    remaining[i].parentElement.parentElement.style.display = "none"
+}
 }
 
-const reviewButton = document.querySelector(".b3")
-reviewButton.onclick = function() {
+//Tasks completed
+completeButton.onclick = () => {
 
   taskManager.displayTasks()
 
-  toDoTasks = document.querySelectorAll(".do")
-  progressTasks = document.querySelectorAll(".Progress")
-  completedTasks = document.querySelectorAll(".Completed")
+  const taskStatus = document.querySelectorAll(".taskStatus")
+  console.log(taskStatus)
+  let status = Object.values(taskStatus).filter(task => task.innerHTML == "Status: Completed")
+  let remaining = Object.values(taskStatus).filter(task => !status.includes(task))
 
-  for (let i = 0; i < progressTasks.length; i++) {
-    progressTasks[i].style.display = "none"
-  }  
-        for (let i = 0; i < completedTasks.length; i++) {
-          completedTasks[i].style.display = "none"
-        } 
-          for (let i = 0; i < toDoTasks.length; i++) {
-            toDoTasks[i].style.display = "none"
-          }
+  for (let i = 0; i < remaining.length; i++) {
+    remaining[i].parentElement.parentElement.style.display = "none"
+}
 }
 
-const completeButton = document.querySelector(".b4")
-completeButton.onclick = function() {
-
-  taskManager.displayTasks()
-
-  toDoTasks = document.querySelectorAll(".do")
-  reviewTasks = document.querySelectorAll(".Review")
-  progressTasks = document.querySelectorAll(".Progress")
-
-  for (let i = 0; i < reviewTasks.length; i++) {
-    reviewTasks[i].style.display = "none"
-  }  
-        for (let i = 0; i < progressTasks.length; i++) {
-          progressTasks[i].style.display = "none"
-        } 
-          for (let i = 0; i < toDoTasks.length; i++) {
-            toDoTasks[i].style.display = "none"
-          }
-}
-
-const allButton = document.querySelector(".b0")
-allButton.onclick = function() {
+// Display all tasks
+allButton.onclick = () => {
   taskManager.displayTasks()
 }
 
-let todaysDate = function(){
+// Date filter
+// Get today's date
+todaysDate = () => {
 let today = new Date()
 let day = today.getDate() 
 let month = today.getMonth() + 1
@@ -303,9 +237,9 @@ if (month < 10) {
 today = yyyy + '-' + month + '-' + day; 
 return today
 } 
-console.log(todaysDate())
 
-let tmrwsDate = function (){
+// get tomorrows date
+tmrwsDate = () => {
   let tomorrow = new Date();
   tomorrow.setDate(new Date().getDate()+1);
   let day = tomorrow.getDate() 
@@ -322,7 +256,8 @@ let tmrwsDate = function (){
   return tomorrow
 }
 
-let plus2Days = function (){
+// get plus 2 days date
+plus2Days = () => {
   let tomorrow = new Date();
   tomorrow.setDate(new Date().getDate()+2);
   let day = tomorrow.getDate() 
@@ -339,7 +274,8 @@ let plus2Days = function (){
   return tomorrow
 }
 
-let plus3Days = function (){
+// get plus 3 days date 
+plus3Days = () => {
   let tomorrow = new Date();
   tomorrow.setDate(new Date().getDate()+3);
   let day = tomorrow.getDate() 
@@ -356,17 +292,9 @@ let plus3Days = function (){
   return tomorrow
 }
 
-// tmrwsDate()
-// console.log(tmrwsDate())
-
-//Filter by date
-// let tmrwDate = Object.values(taskDate).filter(task => task.innerHTML == tmrwsDate())
-// let pl2Date = Object.values(taskDate).filter(task => task.innerHTML == plus2Days())
-// let pl3Date = Object.values(taskDate).filter(task => task.innerHTML == plus3Days())
-
 //Today's tasks
-const todayButton = document.querySelector(".b5")
-todayButton.onclick = function () {
+
+todayButton.onclick = () => {
 
     taskManager.displayTasks()
 
@@ -381,8 +309,7 @@ todayButton.onclick = function () {
 }
 
 // //Tomorrows tasks
-const tomorrowButton = document.querySelector(".b6")
-tomorrowButton.onclick = function () {
+tomorrowButton.onclick = () => {
 
   taskManager.displayTasks()
 
@@ -396,8 +323,7 @@ tomorrowButton.onclick = function () {
 }  
 }
 
-const plus2Button = document.querySelector(".b7")
-plus2Button.onclick = function () {
+plus2Button.onclick = () => {
 
   taskManager.displayTasks()
 
@@ -411,8 +337,7 @@ plus2Button.onclick = function () {
 }  
 }
 
-const plus3Button = document.querySelector(".b8")
-plus3Button.onclick = function () {
+plus3Button.onclick = () => {
 
   taskManager.displayTasks()
 
@@ -426,45 +351,24 @@ plus3Button.onclick = function () {
 }  
 }
 
-  
- 
-  
-//   for (let i = 0; i < tDate.length; i++) {
-//     tDate[i].parentElement.parentElement.style.display = "none"
-//   }  
-//   console.log(tDate)
-// }
+findDay = () => {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+]
 
-// //+2 days
-// const plus2Button = document.querySelector(".b7")
-// todayButton.onclick = function () {
-  
-//   let tDate = Object.values(taskDate).filter(task => task.innerHTML == todaysDate())
-  
-//   for (let i = 0; i < tDate.length; i++) {
-//     tDate[i].parentElement.parentElement.style.display = "none"
-//   }  
-//   console.log(tDate)
-// }
+  const todayPlus2 = days[new Date(plus2Days()).getDay()]
+  const todayPlus3 = days[new Date(plus3Days()).getDay()]
+  plus2Button.innerText = todayPlus2
+  plus3Button.innerText = todayPlus3
 
-// //+3 days
-// const plus3Button = document.querySelector(".b5")
-// todayButton.onclick = function () {
-  
-//   let tDate = Object.values(taskDate).filter(task => task.innerHTML == todaysDate())
-  
-//   for (let i = 0; i < tDate.length; i++) {
-//     tDate[i].parentElement.parentElement.style.display = "none"
-//   }  
-//   console.log(tDate)
-// }
+}
+
 // Load tasks from storage on page load
-document.addEventListener('DOMContentLoaded', taskManager.displayTasks())
+document.addEventListener('DOMContentLoaded', findDay(), taskManager.displayTasks())
 
-
-
-
-
-
-
-       
