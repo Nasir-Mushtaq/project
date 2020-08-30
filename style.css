@@ -213,7 +213,7 @@ body {
   width: 50%;
   margin-bottom: 2px;
 }
-.taskStatus {
+.taskCategory {
   visibility: hidden;
 }
 
@@ -300,7 +300,7 @@ textarea:focus {
 .taskInput i {
   position: absolute;
   top: 18px;
-  right: 60px;
+  left: 68px;
   font-size: 18px;
 }
 

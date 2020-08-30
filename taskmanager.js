@@ -22,12 +22,12 @@ export default class TaskManager{
       </div>
       <div class="assi"><h5 class="d-inline">Assigned to: ${task.assignedTo}</h5>
       </div>
-      <h5 class="zoom d-inline mb-3">Status: ${task.status}</h5>
+      <h5 class="zoom d-inline mb-3 taskStatus">Status: ${task.status}</h5>
       <div class= "editDelete">
       <a href="#" data-toggle="modal" data-target="#abc"><option value="${task.id}" class ="fa fa-edit fa-2x edit"></option></a>
       <a href="#" ><option value="${task.id}"class = "fa fa-trash fa-2x delete"></option></a>
       </div>
-      <div class ="taskStatus">${task.category}</div>
+      <div class ="taskCategory">${task.category}</div>
       </div>
       </div>
       </div>
@@ -46,7 +46,7 @@ export default class TaskManager{
 
   addImage () {
   
-    const card = document.querySelectorAll(".taskStatus")
+    const card = document.querySelectorAll(".taskCategory")
     let call = Object.values(card).filter(task => task.innerHTML == "Call")
     let meeting = Object.values(card).filter(task => task.innerHTML == "Meeting")
     let family = Object.values(card).filter(task => task.innerHTML == "Family")

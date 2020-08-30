@@ -184,6 +184,7 @@ toDoButton.onclick = () => {
   taskManager.displayTasks()
   
     const taskStatus = document.querySelectorAll(".taskStatus")
+    console.log(taskStatus)
     let status = Object.values(taskStatus).filter(task => task.innerHTML == "Status: To do")
     let remaining = Object.values(taskStatus).filter(task => !status.includes(task))
 
@@ -318,7 +319,7 @@ todayButton.onclick = () => {
     let remaining = Object.values(taskDate).filter(task => !date.includes(task))
 
     for (let i = 0; i < remaining.length; i++) {
-      remaining[i].parentElement.parentElement.style.display = "none"
+      remaining[i].parentElement.parentElement.parentElement.style.display = "none"
   }  
 }
 
@@ -331,7 +332,7 @@ tomorrowButton.onclick = () => {
   let remaining = Object.values(taskDate).filter(task => !date.includes(task))
 
   for (let i = 0; i < remaining.length; i++) {
-    remaining[i].parentElement.parentElement.style.display = "none"
+    remaining[i].parentElement.parentElement.parentElement.style.display = "none"
 }  
 }
 
@@ -343,7 +344,7 @@ plus2Button.onclick = () => {
   let remaining = Object.values(taskDate).filter(task => !date.includes(task))
 
   for (let i = 0; i < remaining.length; i++) {
-    remaining[i].parentElement.parentElement.style.display = "none"
+    remaining[i].parentElement.parentElement.parentElement.style.display = "none"
 }  
 }
 
@@ -355,7 +356,7 @@ plus3Button.onclick = () => {
   let remaining = Object.values(taskDate).filter(task => !date.includes(task))
 
   for (let i = 0; i < remaining.length; i++) {
-    remaining[i].parentElement.parentElement.style.display = "none"
+    remaining[i].parentElement.parentElement.parentElement.style.display = "none"
 }  
 }
 
