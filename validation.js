@@ -10,8 +10,7 @@ export default class Validate {
     this.status = status
   }
   
- validateName() {
-
+ validateName(name) {
   let input = this.name.value
   console.log(input)
   let error = document. querySelector("#name_error")
@@ -24,7 +23,6 @@ export default class Validate {
       this.name.classList.remove("success")
       errorIcon.style.display = "block"
       successIcon.style.display = "none"
-      console.log(error.innerText)
       return false
     }
     if (input.length >= 6 || input.length <= 25) {
@@ -66,25 +64,23 @@ export default class Validate {
       }
 
   validateDate() {
-    let input = date.value
+    let input = this.date.value
     let error = document. querySelector("#date_error")
     const successIcon = document.querySelector("#dateSuccessIcon")
     const errorIcon = document.querySelector("#dateErrorIcon")
     
       if (input == "") {
         error.innerText = "Please choose a date"
-        date.classList.add("error")
-        date.classList.remove("success")
+        this.date.classList.add("error")
+        this.date.classList.remove("success")
         errorIcon.style.display = "block"
         successIcon.style.display = "none"
-        console.log(error.innerText)
         return false
       }
       else {
         error.innerHTML = ""
-        date.classList.add("success")
-        console.log(description.classList)
-        description.classList.remove("error")
+        this.date.classList.add("success")
+        this.date.classList.remove("error")
         successIcon.style.display = "block"
         errorIcon.style.display = "none"
         return true
@@ -92,26 +88,23 @@ export default class Validate {
     }
 
     validateTime() {
-      console.log("startTime")
-      let input = startTime.value
+      let input = this.startTime.value
       let error = document. querySelector("#time_error")
       const successIcon = document.querySelector("#timeSuccessIcon")
       const errorIcon = document.querySelector("#timeErrorIcon")
       
         if (input == "") {
           error.innerText = "Please choose a time"
-          startTime.classList.add("error")
-          startTime.classList.remove("success")
+          this.startTime.classList.add("error")
+          this.startTime.classList.remove("success")
           errorIcon.style.display = "block"
           successIcon.style.display = "none"
-          console.log(error.innerText)
           return false
         }
         else {
           error.innerHTML = ""
-          startTime.classList.add("success")
-          console.log(description.classList)
-          description.classList.remove("error")
+          this.startTime.classList.add("success")
+          this.startTime.classList.remove("error")
           successIcon.style.display = "block"
           errorIcon.style.display = "none"
           return true
@@ -120,24 +113,23 @@ export default class Validate {
 
       validateAssignedTo() {
         console.log("assigned")
-        let input = assignedTo.value
+        let input = this.assignedTo.value
         let error = document. querySelector("#assigned_error")
         const successIcon = document.querySelector("#assignedSuccessIcon")
         const errorIcon = document.querySelector("#assignedErrorIcon")
         
           if (input == "" || input <= 3) {
             error.innerText = "Please choose task assignee"
-            assignedTo.classList.add("error")
-            assignedTo.classList.remove("success")
+            this.assignedTo.classList.add("error")
+            this.assignedTo.classList.remove("success")
             errorIcon.style.display = "block"
             successIcon.style.display = "none"
-            console.log(error.innerText)
             return false
           }
           else {
             error.innerHTML = ""
-            assignedTo.classList.add("success")
-            assignedTo.classList.remove("error")
+            this.assignedTo.classList.add("success")
+            this.assignedTo.classList.remove("error")
             successIcon.style.display = "block"
             errorIcon.style.display = "none"
             return true
@@ -149,11 +141,11 @@ export default class Validate {
           const successIcon = document.querySelector("#categorySuccessIcon")
           const errorIcon = document.querySelector("#categoryErrorIcon")
           
-            if (category.value == "") {
+            if (this.category.value == "") {
               console.log("hello")
               error.innerText = "Please choose a category"
-              category.classList.add("error")
-              category.classList.remove("success")
+              this.category.classList.add("error")
+              this.category.classList.remove("success")
               errorIcon.style.display = "block"
               successIcon.style.display = "none"
               return false
@@ -161,8 +153,8 @@ export default class Validate {
            else {
               console.log("hi")
               error.innerHTML = ""
-              category.classList.add("success")
-              category.classList.remove("error")
+              this.category.classList.add("success")
+              this.category.classList.remove("error")
               successIcon.style.display = "block"
               errorIcon.style.display = "none"
               return true
@@ -175,10 +167,10 @@ export default class Validate {
             console.log(successIcon)
             const errorIcon = document.querySelector("#statusErrorIcon")
            
-            if (status.value === "N/A") {
+            if (this.status.value === "N/A") {
               error.innerText = "Please choose task status"
-              status.classList.add("error")
-              status.classList.remove("success")
+              this.status.classList.add("error")
+              this.status.classList.remove("success")
               errorIcon.style.display = "block"
               successIcon.style.display = "none"
               return false
@@ -186,8 +178,8 @@ export default class Validate {
 
             else {
                 error.innerHTML = ""
-                status.classList.add("success")
-                status.classList.remove("error")
+                this.status.classList.add("success")
+                this.status.classList.remove("error")
                 successIcon.style.display = "block"
                 errorIcon.style.display = "none"
                 return true
@@ -195,7 +187,6 @@ export default class Validate {
             }
 
             validateForm() {
-             
               if(
               this.validateName()  && 
               this.validateDescription() && 

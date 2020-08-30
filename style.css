@@ -3,7 +3,7 @@ body {
   font-weight: bold;
   box-sizing: border-box;
   margin: 0;
-  background-image: url("images/background.png");
+  background-image: url("images/background.jpg");
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
@@ -112,6 +112,19 @@ body {
   border: none;
 }
 
+.b0 {
+  width: 75px;
+  height: 75px;
+  font-size: 13px;
+  margin-bottom: 30%;
+}
+
+.add {
+  width: 75px;
+  height: 75px;
+  font-size: 40px;
+  margin-bottom: 30%;
+}
 .time {
   width: 480px;
   height: 120px;
@@ -126,10 +139,14 @@ body {
   /* border: solid 1px #8860D0; */
 }
 
+.modal {
+    border: solid 1px #8860D0;
+
+}
+
 .editDelete {
   color:rgb(247, 248, 248);
   position: relative;
-  /* border: solid 1px white; */
   bottom:23px;
 }
 
@@ -200,17 +217,6 @@ body {
   visibility: hidden;
 }
 
-.add {
-  width: 75px;
-  height: 75px;
-  font-size: 40px;
-  margin-bottom: 30%;
-  /* filter: saturate(3); */
-}
-
-.modal {
-  width: 1500px;
-}
 .modal-title {
   text-align: center;
 }
@@ -222,6 +228,7 @@ body {
   letter-spacing: 2px;
   background-color: rgb(206, 206, 206);
   margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .modal-content {
@@ -240,36 +247,32 @@ body {
   background-color: rgb(206, 206, 206);
 }
 
-.list-group-item-action.active {
-  background-color: rgb(195, 245, 166);
-}
-.card-link {
-  text-decoration: none;
-  color: black;
-}
 .card,
 .card-body,
 .card-subtitle,
 .card-footer,
 .card-title {
   padding: 0;
-  margin: 0;
-}
+} 
 
-input[type="text"],
+input[type="text"], 
+input[type="date"],
+input[type="time"],
 select,
 textarea {
-  width: 80%;
+  width: 78%;
   padding: 12px 20px;
   margin-top: 4px;
   display: inline-block;
   border: 1px solid #ccc;
-  border-radius: 20px;
+  border-radius: 15px;
   box-sizing: border-box;
   text-align: center;
   letter-spacing: 2px;
   font-weight: bold;
+  font-size: 12px;
 }
+
 
 select {
   text-align-last: center;
@@ -279,14 +282,8 @@ select {
   text-overflow: '';
 }
 
-select:focus {
-  outline: none;
-  box-shadow: none;
-}
-input:focus {
-  outline: none;
-  box-shadow: none;
-}
+select:focus, 
+input:focus,
 textarea:focus {
   outline: none;
   box-shadow: none;
@@ -302,7 +299,7 @@ textarea:focus {
 
 .taskInput i {
   position: absolute;
-  top: 20px;
+  top: 18px;
   right: 60px;
   font-size: 18px;
 }
@@ -333,24 +330,32 @@ textarea:focus {
   margin: auto;
 }
 
+#add-error {
+  color: #e74c3c;
+  text-align: center;
+  position: relative;
+  width: 60%;
+  margin: 0px 50px 5px 50px;
+  font-weight: bold;
+}
+
+
 input.success[type="text"],
+input.success[type="date"],
+input.success[type="time"],
 select.success,
 textarea.success {
   border-color: #2ecc71;
 }
 input.error[type="text"],
+input.error[type="date"],
+input.error[type="time"],
 select.error,
 textarea.error {
   border-color: #e74c3c;
 }
 
-.b0 {
-  width: 75px;
-  height: 75px;
-  font-size: 13px;
-  margin-bottom: 30%;
-  /* filter: saturate(3); */
-}
+
 
 div.call {
   background-image: url(images/call.png);
@@ -491,6 +496,8 @@ h2 {
   }
 
   input[type="text"],
+  input[type="date"],
+  input[type="time"],
   select,
   textarea {
   padding: 8px 8px;

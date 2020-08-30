@@ -47,21 +47,20 @@ class Task{
 const taskManager = new TaskManager(list)
 const validate = new Validate(name, description, date, startTime, assignedTo, category, status)
 
-// name.addEventListener("blur", validate.validateName) 
-// description.addEventListener("blur", validate.validateName) 
+
 
 // Function to handle adding of tasks
 addButton.onclick = function(e) {
-
+  e.preventDefault()
+  let error = document. querySelector("#add-error")
   if(!validate.validateForm()) {
-    e.preventDefault()
     addButton.setAttribute("data-dismiss", "")
+    error.innerHTML = "All fields are required!!"
     console.log("stuck")
   }
   else {  
     addButton.setAttribute("data-dismiss", "modal")
-    console.log("hello")
-  
+
   console.log("form validation")
   
   let taskName = name.value
@@ -88,8 +87,29 @@ modalButton.onclick = function() {
   addButton.style.display="block"
   saveButton.style.display="none"
   modalTitle.innerText = "Add new Task"
-}
 
+  name.addEventListener("blur", function () {
+    validate.validateName()
+  }) 
+  description.addEventListener("blur", function () {
+    validate.validateDescription()
+  }) 
+  date.addEventListener("blur", function () {
+    validate.validateDate()
+  })
+  startTime.addEventListener("blur", function () {
+    validate.validateTime()
+  })
+  assignedTo.addEventListener("blur", function () {
+    validate.validateAssignedTo()
+  })
+  category.addEventListener("blur", function () {
+    validate.validateCategory()
+  })
+  status.addEventListener("blur", function () {
+    validate.validateStatus()
+  })
+}
 // Functions for adding, editing and deleting tasks when relevant buttons are clicked
 taskManager.list.addEventListener('click', function(e) {
   let clickedId = parseInt(e.target.value)
@@ -146,6 +166,8 @@ taskManager.list.addEventListener('click', function(e) {
       taskManager.updateTask()
       taskManager.clearFields()
       taskManager.displayTasks()
+      location.reload()
+
     }
   }
   }  
@@ -223,7 +245,7 @@ let month = today.getMonth() + 1
 let yyyy = today.getFullYear()
 
 if (day < 10) { 
-    day = '0' + dd; 
+    day = '0' + day; 
 } 
 if (month < 10) { 
     month = '0' + month; 
@@ -241,7 +263,7 @@ let tmrwsDate = () => {
   let yyyy = tomorrow.getFullYear()
 
   if (day < 10) { 
-    day = '0' + dd; 
+    day = '0' + day; 
   } 
   if (month < 10) { 
     month = '0' + month; 
@@ -259,7 +281,7 @@ let plus2Days = () => {
   let yyyy = tomorrow.getFullYear()
 
   if (day < 10) { 
-    day = '0' + dd; 
+    day = '0' + day; 
   } 
   if (month < 10) { 
     month = '0' + month; 
@@ -277,7 +299,7 @@ let plus3Days = () => {
   let yyyy = tomorrow.getFullYear()
 
   if (day < 10) { 
-    day = '0' + dd; 
+    day = '0' + day; 
   } 
   if (month < 10) { 
     month = '0' + month; 

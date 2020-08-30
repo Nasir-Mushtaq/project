@@ -36,8 +36,8 @@
             <button class="btn button b7">+2 Days</button>
             <button class="btn button b8">+3 Days</button>
             </div>
-            <div class="modal fade" id="abc" role="dialog">
-                <div class="modal-dialog modal-dialog-centered">
+            <div class="modal fade" id="abc" role="dialog" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog ">
                   <div class="modal-content">
                     <div class="modal-header ">
                       <h4 id="modalTitle" class="modal-title w-100 text-center">Add new task</h4>
@@ -60,13 +60,13 @@
                                 <!-- <p id="description_error"></p> -->
                             </div>
                             <div class="taskInput mb-2"><!-- <label for="dueDate">Date</label> -->
-                                <input placeholder="CHOOSE DATE" class="textbox-n input" type="text" onfocus="(this.type='date')"  onfocusout = "(this.type='text')" id="dueDate" required>
+                                <input placeholder="DD/MM/YYYY" class="textbox-n input" type="date" id="dueDate" required>
                                 <i id="dateSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
                                 <i id="dateErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
                                 <small id="date_error"></small>
                             </div>
                                 <div class="taskInput mb-2"><!-- <label for="taskname">Start time</label> -->
-                                    <input type="text" class="textbox-n input" id="startTime" placeholder="CHOOSE TIME" type="text"onfocus="(this.type='time')" onfocusout = "(this.type='text')" id="startTime" required>
+                                    <input placeholder="DD/MM/YYYY" class="input" id="startTime" placeholder="CHOOSE TIME" type="time" id="startTime" required>
                                     <i id="timeSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
                                     <i id="timeErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
                                     <small id="time_error"></small>
@@ -107,12 +107,13 @@
                                             </select>
                                         </div>
                         </form>
-                    </div>
+                   
                     <div class="modal-footer justify-content-center">
+                        <small id="add-error"></small>
                       <button type="submit" id="addTaskButton"class="button addbutton btn" data-dismiss="modal">Add</button>
                       <button type="submit" id="saveTaskButton"class="button addbutton btn" data-dismiss="modal" style="display: none">Save</button>
-
                     </div>
+                </div>
                 </div>
             </div>
         </div>
