@@ -137,10 +137,9 @@ taskManager.list.addEventListener('click', function(e) {
     let id = clickedTask.id
 
     // Save button
-    saveButton.onclick = function(){
+    saveButton.onclick = () => {
 
       if(!validate.validateForm()) {
-        e.preventDefault()
         saveButton.setAttribute("data-dismiss", "")
         console.log("stuck")
       }
