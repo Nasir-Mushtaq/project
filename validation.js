@@ -10,9 +10,8 @@ export default class Validate {
     this.status = status
   }
   
- validateName(name) {
+ validateName() {
   let input = this.name.value
-  console.log(input)
   let error = document. querySelector("#name_error")
   const successIcon = document.getElementById("nameSuccessIcon")
   const errorIcon = document.getElementById("nameErrorIcon")
@@ -31,7 +30,6 @@ export default class Validate {
       this.name.classList.remove("error")
       successIcon.style.display = "block"
       errorIcon.style.display = "none"
-      console.log("hi")
       return true
     }
       
@@ -184,6 +182,33 @@ export default class Validate {
                 errorIcon.style.display = "none"
                 return true
               }
+            }
+
+            validateFields() {
+
+              console.log("frog")
+  
+              this.name.addEventListener("blur", () => {
+                this.validateName()
+              })
+              this.description.addEventListener("blur", () => {
+                this.validateDescription()
+              }) 
+              this.date.addEventListener("blur", () => {
+                this.validateDate()
+              })
+              this.startTime.addEventListener("blur", () => {
+                this.validateTime()
+              })
+              this.assignedTo.addEventListener("blur", () => {
+                this.validateAssignedTo()
+              })
+              this.category.addEventListener("blur", () => {
+                this.validateCategory()
+              })
+              this.status.addEventListener("blur", () => {
+                const newLocal = this.validateStatus()
+              })
             }
 
             validateForm() {

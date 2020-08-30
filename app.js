@@ -29,6 +29,9 @@ const plus2Button = document.querySelector(".b7")
 const plus3Button = document.querySelector(".b8")
 const allButton = document.querySelector(".b0")
 
+let error = document. querySelector("#add-error")
+
+
 //class Task 
 class Task{
   constructor(name, description, date, startTime, assignedTo, category, status, id) {
@@ -52,7 +55,6 @@ const validate = new Validate(name, description, date, startTime, assignedTo, ca
 // Function to handle adding of tasks
 addButton.onclick = function(e) {
   e.preventDefault()
-  let error = document. querySelector("#add-error")
   if(!validate.validateForm()) {
     addButton.setAttribute("data-dismiss", "")
     error.innerHTML = "All fields are required!!"
@@ -87,28 +89,8 @@ modalButton.onclick = function() {
   addButton.style.display="block"
   saveButton.style.display="none"
   modalTitle.innerText = "Add new Task"
+  validate.validateFields()
 
-  name.addEventListener("blur", function () {
-    validate.validateName()
-  }) 
-  description.addEventListener("blur", function () {
-    validate.validateDescription()
-  }) 
-  date.addEventListener("blur", function () {
-    validate.validateDate()
-  })
-  startTime.addEventListener("blur", function () {
-    validate.validateTime()
-  })
-  assignedTo.addEventListener("blur", function () {
-    validate.validateAssignedTo()
-  })
-  category.addEventListener("blur", function () {
-    validate.validateCategory()
-  })
-  status.addEventListener("blur", function () {
-    validate.validateStatus()
-  })
 }
 // Functions for adding, editing and deleting tasks when relevant buttons are clicked
 taskManager.list.addEventListener('click', function(e) {
@@ -126,6 +108,7 @@ taskManager.list.addEventListener('click', function(e) {
     addButton.style.display="none"
     saveButton.style.display="block"
     modalTitle.innerText = "Update Task"
+    validate.validateFields()
 
     name.value = clickedTask.name
     description.value = clickedTask.description
@@ -141,6 +124,8 @@ taskManager.list.addEventListener('click', function(e) {
 
       if(!validate.validateForm()) {
         saveButton.setAttribute("data-dismiss", "")
+        error.innerHTML = "All fields are required!!"
+
         console.log("stuck")
       }
       else {  
