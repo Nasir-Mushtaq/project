@@ -9,7 +9,7 @@ export default class Validate {
     this.category = category
     this.status = status
   }
-  
+// Validate name field
  validateName() {
   let input = this.name.value
   let error = document. querySelector("#name_error")
@@ -32,10 +32,9 @@ export default class Validate {
       errorIcon.style.display = "none"
       return true
     }
-      
   }
-
-  validateDescription() {
+// Validate description field
+validateDescription() {
 
       let input = this.description.value
       let error = document. querySelector("#description_error")
@@ -60,8 +59,8 @@ export default class Validate {
           return true
         }
       }
-
-  validateDate() {
+// Validate date field
+validateDate() {
     let input = this.date.value
     let error = document. querySelector("#date_error")
     const successIcon = document.querySelector("#dateSuccessIcon")
@@ -84,8 +83,8 @@ export default class Validate {
         return true
       }
     }
-
-    validateTime() {
+// Validate time field
+validateTime() {
       let input = this.startTime.value
       let error = document. querySelector("#time_error")
       const successIcon = document.querySelector("#timeSuccessIcon")
@@ -108,8 +107,8 @@ export default class Validate {
           return true
         }
       }
-
-      validateAssignedTo() {
+// Validate assigned to field
+validateAssignedTo() {
         console.log("assigned")
         let input = this.assignedTo.value
         let error = document. querySelector("#assigned_error")
@@ -133,8 +132,8 @@ export default class Validate {
             return true
           }
         }
-
-        validateCategory() {
+// Validate category field
+validateCategory() {
           let error = document. querySelector("#category_error")
           const successIcon = document.querySelector("#categorySuccessIcon")
           const errorIcon = document.querySelector("#categoryErrorIcon")
@@ -158,14 +157,14 @@ export default class Validate {
               return true
             }
           }
-
-           validateStatus() {
+// Validate status field
+validateStatus() {
             let error = document. querySelector("#status_error")
             const successIcon = document.querySelector("#statusSuccessIcon")
             console.log(successIcon)
             const errorIcon = document.querySelector("#statusErrorIcon")
            
-            if (this.status.value === "N/A") {
+            if (this.status.value === "") {
               error.innerText = "Please choose task status"
               this.status.classList.add("error")
               this.status.classList.remove("success")
@@ -183,11 +182,9 @@ export default class Validate {
                 return true
               }
             }
+            // Vaildate all fields
+          validateFields() {
 
-            validateFields() {
-
-              console.log("frog")
-  
               this.name.addEventListener("blur", () => {
                 this.validateName()
               })
@@ -210,7 +207,7 @@ export default class Validate {
                 const newLocal = this.validateStatus()
               })
             }
-
+            // Validate form
             validateForm() {
               if(
               this.validateName()  && 
@@ -226,7 +223,20 @@ export default class Validate {
               else {
                 return false
               }
-          }
-        }
+            }
+
+            clearValidation() {
+              // this.name.classList.remove("error", "success")
+              let input = document.querySelectorAll(".input")
+              let icon = document.querySelectorAll(".fa")
+              console.log(input)
+              // console.log(icon)
+              for (let i = 0; i < input.length; i++) {
+                input[i].classList.remove("error", "success")
+              }
+              for (let i = 0; i < icon.length; i++) {
+                icon[i].style.display = "none"
+            }
+          }      
   
-         
+        }

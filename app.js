@@ -48,20 +48,22 @@ class Task{
 
 // TaskManager class instantiated
 const taskManager = new TaskManager(list)
+
+// Validate class instantiated
 const validate = new Validate(name, description, date, startTime, assignedTo, category, status)
 
 
 
 // Function to handle adding of tasks
-addButton.onclick = function(e) {
+addButton.onclick = (e) => {
   e.preventDefault()
   if(!validate.validateForm()) {
     addButton.setAttribute("data-dismiss", "")
-    error.innerHTML = "All fields are required!!"
-    console.log("stuck")
+    error.innerHTML = "All fields are required!"
   }
   else {  
     addButton.setAttribute("data-dismiss", "modal")
+    validate.clearValidation()
 
   console.log("form validation")
   
@@ -80,12 +82,12 @@ const task = new Task(taskName,taskDescription,taskDate,taskStartTime,taskAssign
 taskManager.addTask(task)
 taskManager.addTaskToList(task)
 taskManager.clearFields()
-location.reload()
+taskManager.displayTasks()
    }
 }
 
 // Function to run when add new task button is clicked
-modalButton.onclick = function() {
+modalButton.onclick = () => {
   addButton.style.display="block"
   saveButton.style.display="none"
   modalTitle.innerText = "Add new Task"
@@ -98,7 +100,6 @@ taskManager.list.addEventListener('click', function(e) {
 // Delete button
   if (e.target.closest('.delete')) {
     taskManager.removeTask(clickedId)
-    // taskManager.displayTasks()
     location.reload()
   }
   // Edit button
@@ -125,8 +126,6 @@ taskManager.list.addEventListener('click', function(e) {
       if(!validate.validateForm()) {
         saveButton.setAttribute("data-dismiss", "")
         error.innerHTML = "All fields are required!!"
-
-        console.log("stuck")
       }
       else {  
         saveButton.setAttribute("data-dismiss", "modal")
@@ -150,7 +149,7 @@ taskManager.list.addEventListener('click', function(e) {
       taskManager.updateTask()
       taskManager.clearFields()
       taskManager.displayTasks()
-      location.reload()
+      validate.clearValidation()
 
     }
   }
@@ -160,7 +159,7 @@ taskManager.list.addEventListener('click', function(e) {
 //Close button 
 closeButton.onclick = () => {  
   taskManager.clearFields()
-  location.reload()
+  taskManager.clearValidation()
 }
 
 // Filter by status
@@ -168,7 +167,6 @@ toDoButton.onclick = () => {
   taskManager.displayTasks()
   
     const taskStatus = document.querySelectorAll(".taskStatus")
-    console.log(taskStatus)
     let status = Object.values(taskStatus).filter(task => task.innerHTML == "Status: To do")
     let remaining = Object.values(taskStatus).filter(task => !status.includes(task))
 

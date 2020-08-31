@@ -6,8 +6,7 @@ export default class TaskManager{
   
   //Creation of task cards 
   addTaskToList(task) {
-      const html = this.tasksArray
-    .map( task =>
+      const html = this.tasksArray.map( task =>
       `
       <div id = "task${task.id}" class = "${task.status}" task >
       <div class="time card">
@@ -34,6 +33,7 @@ export default class TaskManager{
        `
        )
        .join('')
+       
        this.list.innerHTML = html
   }
   
@@ -66,12 +66,13 @@ export default class TaskManager{
           }
    
   }
+  
   // Clear modal form fields
   clearFields() {
     document.getElementById("taskName").value = ''
     document.getElementById("taskDescription").value = ''
     document.getElementById("dueDate").value = ''
-    document.getElementById("startTime").value = ''
+    document.getElementById("startTime").value = '09:00'
     document.getElementById("assignedTo").value = ''
     document.getElementById("category").value = ''
     document.getElementById("status").value = ''
@@ -105,7 +106,5 @@ export default class TaskManager{
     this.tasksArray = this.tasksArray.filter(task => task.id !== id)
     localStorage.setItem('tasks',JSON.stringify(this.tasksArray))
   }
- 
-
   }
   

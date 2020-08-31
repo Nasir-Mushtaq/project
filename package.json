@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/Nasir-Mushtaq/project/issues"
   },
-  "homepage": "/",
+  "homepage": "https://github.com/Nasir-Mushtaq/project#readme",
   "devDependencies": {
     "@babel/core": "^7.11.4",
     "@babel/preset-env": "^7.11.0",

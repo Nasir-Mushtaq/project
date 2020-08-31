@@ -37,7 +37,6 @@ body {
   flex: 1;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   padding-top: 8%;
   flex-direction: column;
   flex-wrap: wrap;
@@ -70,16 +69,6 @@ body {
   padding: 2%;
   
 }
-/* .right {
-  flex: 1;
-  background-color: rgb(218, 218, 218);
-  display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* padding-top: 21%;
-  flex-direction: column;
-  flex-wrap: wrap;
-} */
 
 .button {
   width: 140px;
@@ -136,12 +125,6 @@ body {
   letter-spacing: 2px;
   box-shadow: 0px 3px 3px rgba(0,0,0,0.2), 0px 3px 3px rgba(0,0,0,0.2);
   overflow: hidden;
-  /* border: solid 1px #8860D0; */
-}
-
-.modal {
-    border: solid 1px #8860D0;
-
 }
 
 .editDelete {
@@ -162,9 +145,8 @@ body {
   margin-left: 455px;
   position: absolute;
   color: rgb(8, 243, 172);
-
-
 }
+
 .fa-trash:hover, .fa-edit:hover {
   background-color: rgb(253, 8, 241);
 }
@@ -177,8 +159,6 @@ body {
   font-style: italic;
   margin-left: 5px;
   margin-bottom: 3px;
-  /* text-decoration: underline;
-  text-decoration-color: rgb(198, 13, 245); */
   font-weight: 600;
   width:40%;
 }
@@ -267,7 +247,6 @@ textarea {
   font-size: 14px;
 }
 
-
 select {
   text-align-last: center;
   text-indent: 1px;
@@ -302,15 +281,9 @@ textarea:focus {
  color: rgb(252, 0, 63);
 }
 
-.taskInput {
+.taskInput, .taskSelect  {
   margin-bottom: 4px;
   padding-bottom: 20px;
-  position: relative;
-}
-
-.taskSelect {
-  margin-bottom: 4px;
-  padding-bottom: 18px;
   position: relative;
 }
 
