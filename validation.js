@@ -47,7 +47,6 @@ validateDescription() {
           this.description.classList.remove("success")
           errorIcon.style.display = "block"
           successIcon.style.display = "none"
-          console.log(error.innerText)
           return false
         }
         if (input.length >= 6 || input.lenght <= 100) {
@@ -109,7 +108,6 @@ validateTime() {
       }
 // Validate assigned to field
 validateAssignedTo() {
-        console.log("assigned")
         let input = this.assignedTo.value
         let error = document. querySelector("#assigned_error")
         const successIcon = document.querySelector("#assignedSuccessIcon")
@@ -139,7 +137,6 @@ validateCategory() {
           const errorIcon = document.querySelector("#categoryErrorIcon")
           
             if (this.category.value == "") {
-              console.log("hello")
               error.innerText = "Please choose a category"
               this.category.classList.add("error")
               this.category.classList.remove("success")
@@ -148,7 +145,6 @@ validateCategory() {
               return false
             }
            else {
-              console.log("hi")
               error.innerHTML = ""
               this.category.classList.add("success")
               this.category.classList.remove("error")
@@ -161,7 +157,6 @@ validateCategory() {
 validateStatus() {
             let error = document. querySelector("#status_error")
             const successIcon = document.querySelector("#statusSuccessIcon")
-            console.log(successIcon)
             const errorIcon = document.querySelector("#statusErrorIcon")
            
             if (this.status.value === "") {
@@ -226,11 +221,8 @@ validateStatus() {
             }
 
             clearValidation() {
-              // this.name.classList.remove("error", "success")
               let input = document.querySelectorAll(".input")
-              let icon = document.querySelectorAll(".fa")
-              console.log(input)
-              // console.log(icon)
+              let icon = document.querySelectorAll(".icon")
               for (let i = 0; i < input.length; i++) {
                 input[i].classList.remove("error", "success")
               }

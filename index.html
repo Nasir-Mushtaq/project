@@ -10,6 +10,9 @@
     <title>TP Pro</title>
 </head>
 <body>  
+    <header class="top-bar fixed-top">
+            <p>TASK PLANNER PRO</p>
+    </header>
     <div class="container">
         
         <div class="left">
@@ -47,39 +50,39 @@
                             <div class="form-group text-center">
                            <div class="taskInput  mb-2" >
                             <input type="text" class="input " autocomplete="no" id="taskName" placeholder="Enter Task Name"  required >
-                            <i id="nameSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
-			                <i id="nameErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+                            <i id="nameSuccessIcon" class="fa fa-check-circle icon" style="display: none"></i>
+			                <i id="nameErrorIcon" class="fa fa-exclamation-circle icon" style="display: none"></i>
 			                <small id="name_error"></small>
                             </div>
                            <div class="taskInput  mb-2"> 
                                 <textarea id="taskDescription"  class="input " autocomplete="no" rows="1" placeholder="Enter Task Description"  required></textarea>
-                                <i id="descriptionSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
-                                <i id="descriptionErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+                                <i id="descriptionSuccessIcon" class="fa fa-check-circle icon" style="display: none"></i>
+                                <i id="descriptionErrorIcon" class="fa fa-exclamation-circle icon" style="display: none"></i>
                                 <small id="description_error"></small>
                                 
                             </div>
                             <div class="taskInput mb-2">
                                 <input placeholder="DD/MM/YYYY" class="textbox-n input" type="date" id="dueDate" required>
-                                <i id="dateSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
-                                <i id="dateErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+                                <i id="dateSuccessIcon" class="fa fa-check-circle icon" style="display: none"></i>
+                                <i id="dateErrorIcon" class="fa fa-exclamation-circle icon" style="display: none"></i>
                                 <small id="date_error"></small>
                             </div>
                                 <div class="taskInput mb-2">
                                     <input  class="input" id="startTime" value="09:00" type="time" id="startTime" required>
-                                    <i id="timeSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
-                                    <i id="timeErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+                                    <i id="timeSuccessIcon" class="fa fa-check-circle icon" style="display: none"></i>
+                                    <i id="timeErrorIcon" class="fa fa-exclamation-circle icon" style="display: none"></i>
                                     <small id="time_error"></small>
                                 </div>
                                         <div class="taskInput mb-2 ">
                                             <input type="text" id="assignedTo" class="input" placeholder="Assigned To"  required>
-                                            <i id="assignedSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
-                                            <i id="assignedErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+                                            <i id="assignedSuccessIcon" class="fa fa-check-circle icon" style="display: none"></i>
+                                            <i id="assignedErrorIcon" class="fa fa-exclamation-circle icon" style="display: none"></i>
                                             <small id="assigned_error"></small>
                                         </div>
                                         
                                         <div class="taskInput taskSelect mb-2">
-                                            <i id="categorySuccessIcon" class="fa fa-check-circle" style="display: none"></i>
-                                            <i id="categoryErrorIcon" class="fa fa-exclamation-circle" style="display: none"></i>
+                                            <i id="categorySuccessIcon" class="fa fa-check-circle icon" style="display: none"></i>
+                                            <i id="categoryErrorIcon" class="fa fa-exclamation-circle icon" style="display: none"></i>
                                             <small id="category_error"></small>
                                             <select id="category" class="text-muted input"  required>
                                                 <option value = "" class="catOpt1" selected>Choose Category</option>
@@ -90,8 +93,8 @@
                                               </select>
                                         </div>
                                         <div class="taskInput taskSelect">
-                                            <i id="statusSuccessIcon" class="fa fa-check-circle" style="display: none"></i>
-                                            <i  id="statusErrorIcon"class="fa fa-exclamation-circle" style="display: none"></i>
+                                            <i id="statusSuccessIcon" class="fa fa-check-circle icon" style="display: none"></i>
+                                            <i  id="statusErrorIcon"class="fa fa-exclamation-circle icon" style="display: none"></i>
                                             <small id="status_error"></small>
                                             <select id="status" class=" text-muted input" required>
                                                 <option value="" selected>Choose Status</option>
@@ -112,13 +115,13 @@
             </div>
         </div>
     </div>
-
+    <footer class="fixed-bottom">
+        <p>DESIGNED BY: <strong>NASIR MUSHTAQ</strong><br>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="./app.js"></script>
-<!-- <script src="./validation.js"></script> -->
 </body>
 </html>
 

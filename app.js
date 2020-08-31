@@ -64,8 +64,6 @@ addButton.onclick = (e) => {
   else {  
     addButton.setAttribute("data-dismiss", "modal")
     validate.clearValidation()
-
-  console.log("form validation")
   
   let taskName = name.value
   let taskDescription = description.value
@@ -125,11 +123,10 @@ taskManager.list.addEventListener('click', function(e) {
 
       if(!validate.validateForm()) {
         saveButton.setAttribute("data-dismiss", "")
-        error.innerHTML = "All fields are required!!"
+        error.innerHTML = "All fields are required!"
       }
       else {  
         saveButton.setAttribute("data-dismiss", "modal")
-        console.log("hello")
 
      let updatedTask = {
         name: name.value,
@@ -159,7 +156,7 @@ taskManager.list.addEventListener('click', function(e) {
 //Close button 
 closeButton.onclick = () => {  
   taskManager.clearFields()
-  taskManager.clearValidation()
+  validate.clearValidation()
 }
 
 // Filter by status
