@@ -64,9 +64,8 @@ export default class TaskManager{
           for (let i = 0; i < social.length; i++) {
             social[i].parentElement.parentElement.classList.add("social")
           }
-   
   }
-  
+
   // Clear modal form fields
   clearFields() {
     document.getElementById("taskName").value = ''
