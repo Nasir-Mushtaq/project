@@ -221,14 +221,19 @@ validateStatus() {
             }
 
             clearValidation() {
+
               let input = document.querySelectorAll(".input")
               let icon = document.querySelectorAll(".icon")
+              let message = document.getElementsByTagName("SMALL")
+
               for (let i = 0; i < input.length; i++) {
                 input[i].classList.remove("error", "success")
               }
-              for (let i = 0; i < icon.length; i++) {
-                icon[i].style.display = "none"
+              for (let j = 0; j < icon.length; j++) {
+                icon[j].style.display = "none"
+              }
+              for (let h = 0; h < message.length; h++) {
+                message[h].innerText= ""
+              }      
             }
-          }      
-  
         }
