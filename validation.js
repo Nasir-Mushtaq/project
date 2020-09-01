@@ -16,7 +16,7 @@ export default class Validate {
   const successIcon = document.getElementById("nameSuccessIcon")
   const errorIcon = document.getElementById("nameErrorIcon")
   
-    if (input == "" || input.length <= 6 || input.length >= 25) {
+    if (input == "" || input.length < 6 || input.length > 25) {
       error.innerText = "Please enter between 6 & 25 letters"
       this.name.classList.add("error")
       this.name.classList.remove("success")
@@ -41,15 +41,15 @@ validateDescription() {
       const successIcon = document.getElementById("descriptionSuccessIcon")
       const errorIcon = document.getElementById("descriptionErrorIcon")
       
-        if (input == "" || input.length <= 6 || input.length >= 100) {
-          error.innerText = "Please enter between 6 & 100 letters"
+        if (input == "" || input.length < 6 || input.length > 50) {
+          error.innerText = "Please enter between 6 & 50 letters"
           this.description.classList.add("error")
           this.description.classList.remove("success")
           errorIcon.style.display = "block"
           successIcon.style.display = "none"
           return false
         }
-        if (input.length >= 6 || input.lenght <= 100) {
+        if (input.length >= 6 || input.lenght <= 50) {
           error.innerHTML = ""
           this.description.classList.add("success")
           this.description.classList.remove("error")
