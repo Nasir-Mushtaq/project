@@ -400,12 +400,11 @@ h2 {
 }
   .container {
     display: flex;
-    height: 600px;
+    height: 500px;
     width: 350px;
     flex-direction: row;
     border-radius: 10px;
     margin: 30px auto auto auto;
-
  }
   .left{
     width: inherit; 
