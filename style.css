@@ -353,17 +353,15 @@ textarea.error {
   border-color: #e74c3c;
 }
 
-
-
-div.call {
-  background-image: url(images/call.png);
+div.entertainment {
+  background-image: url(images/entertainment.png);
   background-size:100% auto;
   background-repeat: no-repeat;
 
 }
 
-div.meeting {
-  background-image: url(images/meeting.png);
+div.work {
+  background-image: url(images/work.png);
   background-size:100% auto;
   background-repeat: no-repeat;
 

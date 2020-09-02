@@ -47,16 +47,16 @@ export default class TaskManager{
   addImage () {
   
     const card = document.querySelectorAll(".taskCategory")
-    let call = Object.values(card).filter(task => task.innerHTML == "Call")
-    let meeting = Object.values(card).filter(task => task.innerHTML == "Meeting")
+    let entr = Object.values(card).filter(task => task.innerHTML == "Entertainment")
+    let work = Object.values(card).filter(task => task.innerHTML == "Work")
     let family = Object.values(card).filter(task => task.innerHTML == "Family")
     let social = Object.values(card).filter(task => task.innerHTML == "Social")
   
-    for (let i = 0; i < call.length; i++) {
-      call[i].parentElement.parentElement.classList.add("call")
+    for (let i = 0; i < entr.length; i++) {
+      entr[i].parentElement.parentElement.classList.add("entertainment")
     }
-      for (let i = 0; i < meeting.length; i++) {
-        meeting[i].parentElement.parentElement.classList.add("meeting")
+      for (let i = 0; i < work.length; i++) {
+        work[i].parentElement.parentElement.classList.add("work")
       }
         for (let i = 0; i < family.length; i++) {
           family[i].parentElement.parentElement.classList.add("family")
