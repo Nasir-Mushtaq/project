@@ -405,19 +405,35 @@ h2 {
     flex-direction: row;
     border-radius: 10px;
     margin: 30px auto auto auto;
+    
  }
   .left{
     width: inherit; 
     flex-direction: row;
-    flex:1; 
     padding: 5px;
+    height: 90px;
   }
+
   .center {
     width: inherit;
-    flex:2;
-    padding:5px;
-    height: 450px;
+    padding:2px;
+    height: 300px;
   }
+
+  #taskList {
+    border: solid 1px black;
+    padding:0;
+    margin:0;
+    width: 325px;
+  }
+
+  .right {
+    width: inherit;
+    flex-direction: row;
+    align-items: center;
+    padding: 7px;
+  }
+
 .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8{
     margin-left: 14px;
     margin-bottom: 2px;
@@ -433,13 +449,7 @@ h2 {
     padding: 0;
     font-size: 20px;
   }
-.right {
-    width: inherit;
-    flex-direction: row;
-    flex:1;
-    align-items: center;
-    padding: 7px;
-  }
+
   .b0 {
     margin-bottom: 10px;
     height: 25px;
