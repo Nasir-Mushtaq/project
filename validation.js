@@ -113,8 +113,8 @@ validateAssignedTo() {
         const successIcon = document.querySelector("#assignedSuccessIcon")
         const errorIcon = document.querySelector("#assignedErrorIcon")
         
-          if (input == "" || input <= 3) {
-            error.innerText = "Please choose task assignee"
+          if (input == "" || input <= 3 || input <= 25) {
+            error.innerText = "Please enter between 3 and 25 characters"
             this.assignedTo.classList.add("error")
             this.assignedTo.classList.remove("success")
             errorIcon.style.display = "block"

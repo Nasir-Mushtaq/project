@@ -10,7 +10,7 @@ export default class TaskManager{
       `
       <div id = "task${task.id}" class = "${task.status}" task >
       <div class="time card">
-      <div class="card-body">
+      <div>
       <div class="header">
       <h6 class="d-inline">${task.startTime} </h6>
       <h6 class="d-inline taskDate">${task.date}</h6>
@@ -19,7 +19,7 @@ export default class TaskManager{
       <div class ="desc"> 
       <p>${task.description}</p>
       </div>
-      <div class="assi"><h5 class="d-inline">Assigned to: ${task.assignedTo}</h5>
+      <div class="assigned"><h5 class="d-inline">Assigned to: ${task.assignedTo}</h5>
       </div>
       <h5 class="zoom d-inline mb-3 taskStatus">Status: ${task.status}</h5>
       <div class= "editDelete">
