@@ -492,17 +492,17 @@ h2 {
     font-size: 6px;
     border: solid 1px black;
     height: 18px;
-
+    width: inherit;
     
   }
   
   .fa-edit {
-    margin-left: 285px;
+    margin-left: 275px;
     position: absolute;
   }
   
   .fa-trash {
-    margin-left: 305px;
+    margin-left: 295px;
     position: absolute;
 
   }
