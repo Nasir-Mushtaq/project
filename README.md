@@ -1,4 +1,4 @@
-# TASK PLANNER PRO
+# TASK PLANNER
 
 A simple task planner app which lets the user add/edit/delete tasks.
 
