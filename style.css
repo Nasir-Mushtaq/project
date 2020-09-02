@@ -421,7 +421,6 @@ h2 {
   }
 
   #taskList {
-    border: solid 1px black;
     padding:0;
     margin:0;
     width: 325px;
@@ -442,6 +441,7 @@ h2 {
     width: 65px;
     height: 30px;
     font-size: 7px;
+    font-weight: bold;
     letter-spacing: 0;
   }
   .add {
@@ -471,11 +471,13 @@ h2 {
     padding:0;
   }
    .time p {
-    font-size: 8px;
+    font-size: 9px;
     margin:5px 0 3px 0;
+    font-weight: bold;
+
   }
   .time h6, .time h5 {
-    font-size: 8px;
+    font-size: 9px;
     font-weight: bold;
   }
 
@@ -487,6 +489,11 @@ h2 {
   .editDelete {
     position: relative;
     bottom: 43px;
+    font-size: 6px;
+    border: solid 1px black;
+    height: 18px;
+
+    
   }
   
   .fa-edit {
@@ -528,7 +535,7 @@ h2 {
   textarea {
   padding: 8px 8px;
   border-radius: 10px;
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .addbutton {
@@ -545,11 +552,5 @@ small {
   right: 40px;
   font-size: 16px;
 }
-option {
-  font-size: 10px;
-}
 
-.editDelete {
-  font-size: 6px;
-}
 }
