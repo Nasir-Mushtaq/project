@@ -16,4 +16,4 @@ A simple task planner app which lets the user add/edit/delete tasks.
 
 ## Images
 
-All images from unsplash.com
+All images from pexels.com
